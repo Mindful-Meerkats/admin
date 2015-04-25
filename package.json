@@ -14,5 +14,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.12.3"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "gulp": "^3.8.11",
+    "gulp-notify": "^2.2.0",
+    "reactify": "^1.1.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

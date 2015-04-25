@@ -7,6 +7,5 @@ app.get('/', function( req, res ){
 	res.sendFile(__dirname + '/public/index.html');
 });
 
-
 app.listen(3005);
 console.log("Hey, I'm at 3005");
