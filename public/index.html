@@ -55,10 +55,10 @@
 <script type="text/jsx">
 
 	React.render(
-	  <div className={container}>
-		<TableGrid url="/quests" fields="id|completed_text|description|title" />
-	  	<TableGrid url="/accounts" fields="id|email|password" />
-	  	<TableGrid url="/meerkats" fields="id|full_name|nick_name" />
+	  <div className="container">
+		<TableAdmin title="Quests" url="/quests" fields="id|completed_text|description|title" />
+	  	<TableAdmin title="Accounts" url="/accounts" fields="id|email|password" />
+	  	<TableAdmin title="Meerkats" url="/meerkats" fields="id|nick_name" />
 	  </div>,
 	  document.getElementById('container')
 	);
