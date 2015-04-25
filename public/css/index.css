@@ -12,6 +12,13 @@ body, html {
 	color: #333;
 }
 
+#container {
+	max-width: 960px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+
 /* border-box by default */
 html { box-sizing: border-box;}
 *, *:before, *:after { box-sizing: inherit; }
