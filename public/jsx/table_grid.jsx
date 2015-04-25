@@ -1,7 +1,7 @@
 
 var TableGrid = React.createClass({	
 	getInitialState:function(){	
-		return { rows: [], fields: this.props.fields.split('|') } 
+		return { rows: [], fields: this.props.fields.split('|') } ;
 	},
 	componentDidMount: function() {
 		api.get( this.props.url, this, 'rows' );
