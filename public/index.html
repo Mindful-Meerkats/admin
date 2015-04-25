@@ -41,13 +41,13 @@
 </script>
 <script src='/jsx/table_grid.jsx' type="text/jsx"></script>
 <div id='container'></div>
-<script type="text/jsx">    
+<script type="text/jsx">
 
 	React.render(
 	  <div className={container}>
 		<TableGrid url="/quests" fields="id|completed_text|description|title" />
 	  	<TableGrid url="/accounts" fields="id|email|password" />
-	  	<TableGrid url="/meerkats" fields="id|full_name|scores" />	  
+	  	<TableGrid url="/meerkats" fields="id|full_name|nick_name" />
 	  </div>,
 	  document.getElementById('container')
 	);
