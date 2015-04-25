@@ -1,1 +1,37 @@
-html, body { background-color: red;}
+@import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css);
+@import url(http://fonts.googleapis.com/css?family=Pragati+Narrow:400,700);
+@import url(http://fonts.googleapis.com/css?family=Share+Tech+Mono);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+
+/* default font */
+body, html {
+	font-family: 'Open Sans Condensed', sans;
+	font-size: 16px;
+	line-height: 1.4;
+	color: #333;
+}
+
+/* border-box by default */
+html { box-sizing: border-box;}
+*, *:before, *:after { box-sizing: inherit; }
+
+/* table_grid.jsx */
+
+.tableGrid {}
+.tableGrid table { width: 100%; }    
+.tableGrid td { padding: 3px 6px; border-bottom: 1px solid #ddd; border-left: 1px solid #eee; }
+.tableGrid thead td { color: white; background-color: #333; font-weight: 600; font-family: 'Pragati Narrow', sans; }
+
+
+.tableGrid td.id { text-align: right; width: 220px; }
+.tableGrid thead td.id { background-color: #666; }
+.tableGrid tbody td.id { font-size: 14px; color: #666; background-color: #eee; }
+
+
+
+
+
+
+
+
+

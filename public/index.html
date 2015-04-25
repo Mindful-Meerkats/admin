@@ -1,6 +1,57 @@
 <!DOCTYPE html>
 <title>Admin</title>
 <link rel="stylesheet" href="/css/index.css">
-<script src="/build/main.js"></script>
+<script src="https://fb.me/react-0.13.2.js"></script>
+<script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script>
 
-<h1>Admin!</h1>
+    var api = {};
+    api.server = "http://localhost:1337";
+    api.get = function( url, obj, key ){
+	   $.ajax({
+	      url: api.server + url,
+	      dataType: 'json',
+	      success: function( data ){
+	      	var result = {};
+	      	result[key] = data;
+	        obj.setState( result );
+	      }.bind(this),
+	      error: function( xhr, status, err ){
+	        console.error( url, status, err.toString() );
+	      }.bind(this)
+	    });
+    }
+
+
+    String.prototype.method = function(){
+    	var m = this;
+    return function( obj ){
+    	return obj[m].call( obj );
+    }}	
+    String.prototype.capitalize = function(){
+    	return this.charAt(0).toUpperCase() + this.slice(1);
+	}
+    String.prototype.humanize = function(){
+    	return this.split('_').map( "capitalize".method() ).join('-');
+    }
+
+	
+</script>
+<script src='/jsx/table_grid.jsx' type="text/jsx"></script>
+<div id='container'></div>
+<script type="text/jsx">    
+
+	React.render(
+	  <div className={container}>
+		<TableGrid url="/quests" fields="id|completed_text|description|title" />
+	  	<TableGrid url="/accounts" fields="id|email|password" />
+	  	<TableGrid url="/meerkats" fields="id|full_name|scores" />	  
+	  </div>,
+	  document.getElementById('container')
+	);
+
+
+</script>
+
+

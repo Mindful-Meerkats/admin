@@ -32,7 +32,7 @@ gulp.task('browserify', function() {
     .pipe(notify("Bundling done."));
 });
 
-gulp.task('default', ['browserify', 'watch','server'])
+gulp.task('default', ['server'])
 
 gulp.task('watch', function() {
   gulp.watch(sourcesDir + '/' + "*.js", ['browserify']);

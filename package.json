@@ -22,6 +22,9 @@
     "reactify": "^1.1.0",
     "vinyl-source-stream": "^1.1.0",
     "gulp-nodemon": "~2.0.2",
-    "gulp-task-listing": "~1.0.0"
+    "gulp-task-listing": "~1.0.0",
+    "baobab": "~1.0.1",
+    "react": "~0.13.2",
+    "baobab-react": "git+https://github.com/Yomguithereal/baobab-react.git"
   }
 }
