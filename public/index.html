@@ -37,6 +37,17 @@
     	return this.split('_').map( "capitalize".method() ).join('-');
     };
 
+    var util = {};
+    util.compare = function(a, b){
+    	if( a > b ) return -1;
+    	if( a < b ) return 1;
+    	return 0;
+    }
+    util.sorter = function(k,dir){
+    return function(a,b){
+    	return util.compare(a[k],b[k]) * (dir==="desc" ? -1 : 1);
+    }}
+
 	
 </script>
 <script src='/jsx/table_grid.jsx' type="text/jsx"></script>

@@ -1,7 +1,8 @@
-@import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css);
-@import url(http://fonts.googleapis.com/css?family=Pragati+Narrow:400,700);
-@import url(http://fonts.googleapis.com/css?family=Share+Tech+Mono);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+@import url(//cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css);
+@import url(//fonts.googleapis.com/css?family=Pragati+Narrow:400,700);
+@import url(//fonts.googleapis.com/css?family=Share+Tech+Mono);
+@import url(//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 
 /* default font */
 body, html {
@@ -22,19 +23,31 @@ body, html {
 html { box-sizing: border-box;}
 *, *:before, *:after { box-sizing: inherit; }
 
-/* table_grid.jsx */
+/* no text select */
+html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
+/* TableGrid */
 .tableGrid {}
 .tableGrid table { width: 100%; }    
-.tableGrid td { padding: 3px 6px; border-bottom: 1px solid #ddd; border-left: 1px solid #eee; }
-.tableGrid thead td { color: white; background-color: #333; font-weight: 600; font-family: 'Pragati Narrow', sans; }
+.tableGrid td { padding: 3px 6px; border-bottom: 1px solid #ddd; border-left: 1px solid #eee; cursor: pointer; }
+.tableGrid thead td { color: white; background-color: #333; font-weight: 600; font-family: 'Pragati Narrow', sans; position: relative; }
+.tableGrid tbody tr:hover td { background-color: #666; color: white; }
 
+/* TableGrid - sorting icons */
+.tableGrid thead td i { position: absolute; right: 5px; top: 5px; }
 
-.tableGrid td.id { text-align: right; width: 220px; }
-.tableGrid thead td.id { background-color: #666; }
+/* TableGrid - id columns */
+.tableGrid td.id { text-align: center;  width: 220px; }
+.tableGrid thead td.id { background-color: #666; text-transform: uppercase;  }
 .tableGrid tbody td.id { font-size: 14px; color: #666; background-color: #eee; }
+.tableGrid tbody tr:hover td.id { background-color: #333; color: white; }
 
+/* TableHeader */
 
+.tableHeader { background-color: black; color: white; line-height: 35px; }
+.tableHeader i { margin: 0 0.2em;  }
+.tableHeader label { font-weight: bold; font-size: 18px; padding: 5px 0px; }
+.tableHeader input { float: right; margin: 5px 5px; background-color: #333; border-radius: 10px; border: 0px none; padding: 5px 10px; }
 
 
 
