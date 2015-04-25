@@ -21,20 +21,21 @@
 	        console.error( url, status, err.toString() );
 	      }.bind(this)
 	    });
-    }
+    };
 
 
     String.prototype.method = function(){
     	var m = this;
-    return function( obj ){
-    	return obj[m].call( obj );
-    }}	
+    	return function( obj ){
+    		return obj[m].call( obj );
+    	};
+	};	
     String.prototype.capitalize = function(){
     	return this.charAt(0).toUpperCase() + this.slice(1);
-	}
+	};
     String.prototype.humanize = function(){
     	return this.split('_').map( "capitalize".method() ).join('-');
-    }
+    };
 
 	
 </script>
