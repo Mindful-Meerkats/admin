@@ -11,5 +11,8 @@
     "url": "git@bitbucket.org:mindfulmeerkats/admin.git"
   },
   "author": "Ramon Gebben <ramon@ra-ge.net> (http://ra-ge.net)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
 }
