@@ -44,12 +44,10 @@ var TableGrid = React.createClass({
 	}
 });	
 
+
 var TableFormEditorJSON = React.createClass({
 	getInitialState:function(){
-		return {
-			data: JSON.stringify( this.props.data || null ),
-			error: null
-		}
+		return {}			
 	},	
 	componentDidMount: function(){
 		var editor = ace.edit( this.refs.aceEditor.getDOMNode() );
@@ -59,29 +57,25 @@ var TableFormEditorJSON = React.createClass({
 			try {
 				result = JSON.parse( editor.getSession().getValue() );
 				me.props.onInput( result );	
-				me.setState({ error: null });				
-			} catch( err ){
-				me.setState({ error: err + "" });				
-			}			
+			} catch( err ){}			
 		});
 	},
-	render:function(){
-		var error;
-		if( this.state.error ) error = <div className='error'>{this.state.error}</div>;
-		return <div className='tableFormEditorJSON'>{error}<div ref="aceEditor">{this.state.data}</div></div>;
+	render:function(){						
+		return <div className='tableFormEditorJSON'><div ref="aceEditor">{JSON.stringify( this.props.data)}</div></div>;
 	}
 });
 
-var TableFormEditorText = React.createClass({
+var TableFormEditorText = React.createClass({    
 	getInitialState:function(){
 		return {
 			data: this.props.data || null
 		}
 	},	
-	sendInput:function(){
-		this.props.onInput( this.refs.inputElement.getDOMNode().value );
+	sendInput:function( e ){
+		this.setState( { data: this.refs.inputElement.getDOMNode().value });		
+		this.props.onInput( this.refs.inputElement.getDOMNode().value );		
 	},
-	render:function(){
+	render:function(){		
 		return <div className='tableFormEditorText'><input ref='inputElement' type={this.props.type || 'text'} value={this.state.data} onInput={this.sendInput} onChange={this.sendInput}/></div>;
 	}
 });
@@ -90,7 +84,7 @@ var TableForm = React.createClass({
 	getInitialState: function(){
 		return {
 			fields: this.props.fields.split('|').map( function(s){ return s.split(':').concat(['json']).slice(0,2) } ),
-			data:   this.props.data,
+			data:   JSON.parse( JSON.stringify( this.props.data ) ),
 			dirty:  this.props.data.id ? false : true
 		}
 	},
@@ -103,10 +97,13 @@ var TableForm = React.createClass({
 	saveMe:function(){
 		this.props.onSave( this.state.data );		
 	},
-	sendInput:function(k,i){
-		var d = this.state.data;
-		d[k] = i;	
-		this.setState({data: d});
+	sendInput:function(k,i){	
+	    var d = this.state.data;
+	    d[k] = i;		    
+	    this.setState( { data: d } );				
+	},
+	shouldComponentUpdate:function(){
+		return false;
 	},
 	renderFields:function(){		
 		return this.state.fields.map( function( field ){
@@ -114,21 +111,28 @@ var TableForm = React.createClass({
 			var fieldType = field[1];
 			var control;
 			if( fieldType === 'json' ){
-				control = <TableFormEditorJSON data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+				control = <TableFormEditorJSON key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
 			} else if( fieldType === 'text' ){
-				control = <TableFormEditorText data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>			
+				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>			
 			} else if( fieldType === 'password' ){
-				control = <TableFormEditorText data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
+				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
 			}
 			return <fieldset key={this.state.data.id + "_" + fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
 		}, this);
 	},
-	render: function(){		
-		return <div className='tableForm'><div className='blocker' onClick={this.closeMe}/><form>{this.renderFields()}</form></div>
+	render: function(){		    
+		return (<div className='tableForm'>
+			<div className='blocker' onClick={this.closeMe}/>
+				<form>
+				  {this.renderFields()}			      
+			    </form>
+			    <div className='cancel' onClick={this.discardMe}>Cancel</div>
+			    <div className='submit' onClick={this.saveMe}>Submit</div>
+			</div>)
 	}
 });
 
-var TableAdmin = React.createClass({	
+var TableAdmin = React.createClass({
 	getInitialState: function(){	
 		return { 						
 			rows: [],
@@ -153,8 +157,19 @@ var TableAdmin = React.createClass({
   	discardForm: function(){
   		this.setState({ record: null });
   	},
-  	saveForm: function(){
+  	refresh:function(){  		
+  		api.get( this.props.url, this, 'rows' );
+		this.refs.searchInput.getDOMNode().focus();
+  	},
+  	saveForm: function( data ){  		  		
         // if succesfully posted/put to api (depends on if id exists)
+        var newdata = {};
+        this.state.formFields.split('|').forEach( function(f){
+        	var fieldName = f.split(':')[0];
+        	if( fieldName !== 'id' ) newdata[fieldName] = data[fieldName];
+        });
+        if( data.id ) api.put(this.props.url + '/' + data.id, newdata, this.refresh );        
+        else          api.post(this.props.url, newdata, this.refresh );
         this.discardForm();
   	},
 	render: function(){ 
