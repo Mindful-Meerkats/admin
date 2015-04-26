@@ -55,6 +55,7 @@ html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-selec
 .tableForm form { position: absolute; top: 10%; right: 5%; left: 5%; bottom: 10%; background-color: white; padding: 1em 1em; border: 1px solid black; box-shadow: 5px 5px 25px black; z-index: 1000; }
 .tableForm fieldset { border: 3px solid #ccc; padding: 5px 0px 0px 0px; margin: 0 0 1em; position: relative;  background-color: #ccc;  border-radius: 3px; }
 .tableForm legend { font-weight: bold; margin-left: 0.5em;padding: 0 0.5em;  background-color: #333; color: white; border-radius: 3px; }
+.tableForm .error { font-weight: bold; position: absolute; top: -3px; right: 0.5em; font-size: 16px; z-index: 100; background-color: maroon; color: white; padding: 0 0.5em; border-radius: 3px; max-width: 50%; }
 
 /* TableForm - Animations */
 .tableForm form { animation: formIn 1s 1; -webkit-animation: formIn 0.5s 1; transform: translate(0,0); }
@@ -68,7 +69,7 @@ html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-selec
 }
 
 /* TableEditor */
-.tableFormEditor .ace_editor { width: 100%; height: 70px; } 
+.tableFormEditorJSON .ace_editor { width: 100%; height: 70px; } 
 
 
 

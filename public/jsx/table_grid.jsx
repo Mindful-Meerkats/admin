@@ -1,6 +1,10 @@
 var TableGrid = React.createClass({	
 	getInitialState:function(){			
-		return { fields: this.props.fields.split('|'), sort: "id", sortDir: "asc" } 
+		return { 
+			fields: this.props.fields.split('|').map( function(s){ return s.split(':')[0] } ), 
+			sort: "id", 
+			sortDir: "asc" 
+		} 
 	},
 	openRecord:function( r ){		
 	    this.props.onRecord( r );
@@ -43,14 +47,42 @@ var TableGrid = React.createClass({
 var TableFormEditorJSON = React.createClass({
 	getInitialState:function(){
 		return {
-			data: JSON.stringify( this.props.data || null )			
+			data: JSON.stringify( this.props.data || null ),
+			error: null
 		}
 	},	
 	componentDidMount: function(){
-		ace.edit( this.refs.aceEditor.getDOMNode() );
+		var editor = ace.edit( this.refs.aceEditor.getDOMNode() );
+		var me = this;
+		editor.on('input', function(){
+			var result;
+			try {
+				result = JSON.parse( editor.getSession().getValue() );
+				me.props.onInput( result );	
+				me.setState({ error: null });				
+			} catch( err ){
+				me.setState({ error: err + "" });				
+			}			
+		});
 	},
 	render:function(){
-		return <div className='tableFormEditor'><div ref="aceEditor">{this.state.data}</div></div>;
+		var error;
+		if( this.state.error ) error = <div className='error'>{this.state.error}</div>;
+		return <div className='tableFormEditorJSON'>{error}<div ref="aceEditor">{this.state.data}</div></div>;
+	}
+});
+
+var TableFormEditorText = React.createClass({
+	getInitialState:function(){
+		return {
+			data: this.props.data || null
+		}
+	},	
+	sendInput:function(){
+		this.props.onInput( this.refs.inputElement.getDOMNode().value );
+	},
+	render:function(){
+		return <div className='tableFormEditorText'><input ref='inputElement' type={this.props.type || 'text'} value={this.state.data} onInput={this.sendInput} onChange={this.sendInput}/></div>;
 	}
 });
 
@@ -71,18 +103,27 @@ var TableForm = React.createClass({
 	saveMe:function(){
 		this.props.onSave( this.state.data );		
 	},
-	renderFields:function(){
+	sendInput:function(k,i){
+		var d = this.state.data;
+		d[k] = i;	
+		this.setState({data: d});
+	},
+	renderFields:function(){		
 		return this.state.fields.map( function( field ){
 			var fieldName = field[0];
 			var fieldType = field[1];
 			var control;
 			if( fieldType === 'json' ){
-				control = <TableFormEditor data={this.state.data[fieldName]}/>
+				control = <TableFormEditorJSON data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+			} else if( fieldType === 'text' ){
+				control = <TableFormEditorText data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>			
+			} else if( fieldType === 'password' ){
+				control = <TableFormEditorText data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
 			}
 			return <fieldset key={this.state.data.id + "_" + fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
 		}, this);
 	},
-	render: function(){
+	render: function(){		
 		return <div className='tableForm'><div className='blocker' onClick={this.closeMe}/><form>{this.renderFields()}</form></div>
 	}
 });
