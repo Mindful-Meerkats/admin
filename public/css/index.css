@@ -47,7 +47,7 @@ html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-selec
 .tableHeader { background-color: black; color: white; line-height: 35px; }
 .tableHeader i { margin: 0 0.2em;  }
 .tableHeader label { font-weight: bold; font-size: 18px; padding: 5px 0px; }
-.tableHeader input { float: right; margin: 5px 5px; background-color: #333; border-radius: 10px; border: 0px none; padding: 5px 10px; }
+.tableHeader input { float: right; margin: 5px 5px; background-color: #333; border-radius: 10px; border: 0px none; padding: 5px 10px; color: #f9f9f9; }
 
 
 
