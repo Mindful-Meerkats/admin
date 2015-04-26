@@ -40,10 +40,24 @@ var TableGrid = React.createClass({
 	}
 });	
 
+var TableFormEditorJSON = React.createClass({
+	getInitialState:function(){
+		return {
+			data: JSON.stringify( this.props.data || null )			
+		}
+	},	
+	componentDidMount: function(){
+		ace.edit( this.refs.aceEditor.getDOMNode() );
+	},
+	render:function(){
+		return <div className='tableFormEditor'><div ref="aceEditor">{this.state.data}</div></div>;
+	}
+});
+
 var TableForm = React.createClass({
 	getInitialState: function(){
 		return {
-			fields: this.props.fields.split('|'),
+			fields: this.props.fields.split('|').map( function(s){ return s.split(':').concat(['json']).slice(0,2) } ),
 			data:   this.props.data,
 			dirty:  this.props.data.id ? false : true
 		}
@@ -57,8 +71,19 @@ var TableForm = React.createClass({
 	saveMe:function(){
 		this.props.onSave( this.state.data );		
 	},
+	renderFields:function(){
+		return this.state.fields.map( function( field ){
+			var fieldName = field[0];
+			var fieldType = field[1];
+			var control;
+			if( fieldType === 'json' ){
+				control = <TableFormEditor data={this.state.data[fieldName]}/>
+			}
+			return <fieldset key={this.state.data.id + "_" + fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
+		}, this);
+	},
 	render: function(){
-		return <div className='tableForm'><div className='blocker' onClick={this.closeMe}/><form>Dit is het formulier</form></div>
+		return <div className='tableForm'><div className='blocker' onClick={this.closeMe}/><form>{this.renderFields()}</form></div>
 	}
 });
 
