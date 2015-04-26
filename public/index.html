@@ -47,6 +47,19 @@
     return function(a,b){
     	return util.compare(a[k],b[k]) * (dir==="desc" ? -1 : 1);
     }}
+    util.search_object = function(arr){
+    return function(obj){            	
+    	var keys = Object.keys( obj );
+    	var all = true;
+    	arr.forEach( function(s){
+    		var any = false;
+    		keys.forEach( function(k){
+    			if( ( obj[k] + "" ).search(s) !== -1 ) any = true;
+    		});
+    		all = all && any;
+    	});
+    	return all;    	
+    }}
 
 	
 </script>
@@ -55,10 +68,9 @@
 <script type="text/jsx">
 
 	React.render(
-	  <div className="container">
-		<TableAdmin title="Quests" url="/quests" fields="id|completed_text|description|title" />
-	  	<TableAdmin title="Accounts" url="/accounts" fields="id|email|password" />
-	  	<TableAdmin title="Meerkats" url="/meerkats" fields="id|nick_name" />
+
+	  <div className="container">		
+	  	<TableAdmin icon="key" title="Accounts" url="/accounts" fields="id|email|password" />	  	
 	  </div>,
 	  document.getElementById('container')
 	);

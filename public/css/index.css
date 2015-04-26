@@ -29,8 +29,8 @@ html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-selec
 /* TableGrid */
 .tableGrid {}
 .tableGrid table { width: 100%; }    
-.tableGrid td { padding: 3px 6px; border-bottom: 1px solid #ddd; border-left: 1px solid #eee; cursor: pointer; }
-.tableGrid thead td { color: white; background-color: #333; font-weight: 600; font-family: 'Pragati Narrow', sans; position: relative; }
+.tableGrid td { padding: 3px 6px; border-bottom: 1px solid #ddd; border-left: 1px dotted black; cursor: pointer; }
+.tableGrid thead td { color: white; background-color: #333; font-weight: 600; font-family: 'Pragati Narrow', sans; position: relative; border-left: 1px solid black;}
 .tableGrid tbody tr:hover td { background-color: #666; color: white; }
 
 /* TableGrid - sorting icons */
@@ -43,15 +43,15 @@ html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-selec
 .tableGrid tbody tr:hover td.id { background-color: #333; color: white; }
 
 /* TableHeader */
-
 .tableHeader { background-color: black; color: white; line-height: 35px; }
-.tableHeader i { margin: 0 0.2em;  }
+.tableHeader i { margin: 0 0.4em;  }
 .tableHeader label { font-weight: bold; font-size: 18px; padding: 5px 0px; }
-.tableHeader input { float: right; margin: 5px 5px; background-color: #333; border-radius: 10px; border: 0px none; padding: 5px 10px; color: #f9f9f9; }
+
+.tableHeader input { float: right; margin: 5px 5px; background-color: #333; border-radius: 10px; border: 0px none; padding: 5px 10px; outline: none; color: white; }
 
 
-
-
-
+/* TableAdmin */
+.tableAdmin { position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; }
+.tableAdmin .tableGrid table { position: absolute; top: 35px; left: 0px; right: 0px; bottom: 0px;  }
 
 
