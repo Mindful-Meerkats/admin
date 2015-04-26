@@ -44,13 +44,13 @@ var TableGrid = React.createClass({
 	}
 });	
 
-
 var TableFormEditorJSON = React.createClass({
 	getInitialState:function(){
 		return {}			
 	},	
 	componentDidMount: function(){
 		var editor = ace.edit( this.refs.aceEditor.getDOMNode() );
+		editor.getSession().setMode("ace/mode/json")
 		var me = this;
 		editor.on('input', function(){
 			var result;
@@ -61,7 +61,7 @@ var TableFormEditorJSON = React.createClass({
 		});
 	},
 	render:function(){						
-		return <div className='tableFormEditorJSON'><div ref="aceEditor">{JSON.stringify( this.props.data)}</div></div>;
+		return <div className='tableFormEditorJSON'><div ref="aceEditor">{JSON.stringify( this.props.data, null, "\t" )}</div></div>;
 	}
 });
 
@@ -136,7 +136,7 @@ var TableAdmin = React.createClass({
 	getInitialState: function(){	
 		return { 						
 			rows: [],
-			gridFields: this.props.gridFields || this.props.fields, 
+			gridFields: this.props.gridFields || ("id|" + this.props.fields), 
 			formFields: this.props.formFields || this.props.fields,
 			search: "",
 			icon: this.props.icon || "table",
@@ -152,7 +152,7 @@ var TableAdmin = React.createClass({
   		this.setState({search: this.refs.searchInput.getDOMNode().value || ""});
   	},
   	openForm: function( record ){
-        this.setState({ record: record });
+        this.setState({ record: record || {} });
   	},  	
   	discardForm: function(){
   		this.setState({ record: null });
@@ -181,8 +181,9 @@ var TableAdmin = React.createClass({
 			<div className="tableAdmin">
 			  <div className="tableHeader">
 			    <i className={"fa fa-" + this.state.icon}></i>
-			    <label>{this.state.title}</label>
+			    <label>{this.state.title}</label>			    
 			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder="Search..." value={this.state.search}/>
+			    <div className='create' onClick={this.openForm}>Create</div>
 			   </div>
 			   <TableGrid fields={this.state.gridFields} rows={this.state.rows} search={this.state.search} onRecord={this.openForm}/>
 			   {form}
