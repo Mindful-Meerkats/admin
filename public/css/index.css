@@ -5,26 +5,20 @@
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 
 /* default font */
-body, html {
-	font-family: 'Open Sans Condensed', sans;
-	font-size: 16px;
-	line-height: 1.4;
-	color: #333;
-}
-
-#container {
-	max-width: 960px;
-	width: 100%;
-	margin: 0 auto;
-}
-
+body, html { font-family: 'Open Sans Condensed', sans; font-size: 16px; line-height: 1.4; color: #333; }
 
 /* border-box by default */
 html { box-sizing: border-box;}
 *, *:before, *:after { box-sizing: inherit; }
 
-/* no text select */
+/* no text select by default */
 html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+/* container */
+#container {  }
+
+/* blocker */
+.blocker { position: absolute; top: 0; right: 0; left: 0; bottom: 0; z-index: 100; background-color: rgba(0,0,0,0.8); }
 
 /* TableGrid */
 .tableGrid {}
@@ -37,21 +31,44 @@ html { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-selec
 .tableGrid thead td i { position: absolute; right: 5px; top: 5px; }
 
 /* TableGrid - id columns */
-.tableGrid td.id { text-align: center;  width: 220px; }
+.tableGrid td.id { text-align: center; width: 220px; }
 .tableGrid thead td.id { background-color: #666; text-transform: uppercase;  }
 .tableGrid tbody td.id { font-size: 14px; color: #666; background-color: #eee; }
 .tableGrid tbody tr:hover td.id { background-color: #333; color: white; }
 
+/* TableGrid - common columns */
+.tableGrid td.email { width: 300px; }
+.tableGrid td.password { width: 200px; }
+
+
 /* TableHeader */
 .tableHeader { background-color: black; color: white; line-height: 35px; }
 .tableHeader i { margin: 0 0.4em;  }
-.tableHeader label { font-weight: bold; font-size: 18px; padding: 5px 0px; }
+.tableHeader label { font-weight: bold; font-size: 18px; padding: 5px 0; }
 
-.tableHeader input { float: right; margin: 5px 5px; background-color: #333; border-radius: 10px; border: 0px none; padding: 5px 10px; outline: none; color: white; }
+.tableHeader input { float: right; min-width: 150px; max-width: 300px; width: 20%; margin: 5px 5px; background-color: #333; border-radius: 10px; border: 0 none; padding: 5px 10px; outline: none; color: white; }
 
 
 /* TableAdmin */
-.tableAdmin { position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; }
-.tableAdmin .tableGrid table { position: absolute; top: 35px; left: 0px; right: 0px; bottom: 0px;  }
+.tableAdmin { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.tableAdmin .tableGrid table { position: absolute; top: 35px; left: 0; right: 0; bottom: 0;  }
+
+/* TableForm */
+.tableForm { position: fixed; top: 0; left: 0; right: 0; bottom: 0; }
+.tableForm form { position: absolute; top: 10%; right: 5%; left: 5%; bottom: 10%; background-color: white; padding: 1em 1em; border: 1px solid black; box-shadow: 5px 5px 25px black; z-index: 1000; }
+
+/* TableForm - Animations */
+.tableForm form { animation: formIn 1s 1; -webkit-animation: formIn 0.5s 1; transform: translate(0,0); }
+
+@-webkit-keyframes formIn {
+  0%   { opacity: 0; transform: translate(100%,0); }
+  100% { opacity: 1; transform: translate(0,0); }
+}
+@keyframes formIn {
+  0%   { opacity: 0; transform: translate(100%,0); }
+  100% { opacity: 1; transform: translate(0,0); }
+}
+
+
 
 
