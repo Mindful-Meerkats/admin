@@ -138,8 +138,7 @@ var TableAdmin = React.createClass({
 			rows: [],
 			gridFields: this.props.gridFields || ("id|" + this.props.fields), 
 			formFields: this.props.formFields || this.props.fields,
-			search: "",
-			icon: this.props.icon || "table",
+			search: "",			
 			title: this.props.title || "Data",
 			record: this.props.record || null
 		} 
@@ -178,12 +177,10 @@ var TableAdmin = React.createClass({
 	       form = <TableForm fields={this.state.formFields} data={this.state.record} onSave={this.saveForm} onDiscard={this.discardForm}/>;	
 	    } 
 		return (
-			<div className="tableAdmin">
-			  <div className="tableHeader">
-			    <i className={"fa fa-" + this.state.icon}></i>
-			    <label>{this.state.title}</label>			    
-			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder="Start typing for search.." value={this.state.search}/>
-			    <div className='create' onClick={this.openForm}></div>
+			<div className={"tableAdmin " + this.props.className} >
+			  <div className="tableHeader">			    			    
+			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder={"Type to search in " + this.state.title} value={this.state.search}/>
+			    <div className={"create " +  this.state.title.toLowerCase() } onClick={this.openForm}></div>
 			   </div>
 			   <TableGrid fields={this.state.gridFields} rows={this.state.rows} search={this.state.search} onRecord={this.openForm}/>
 			   {form}

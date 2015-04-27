@@ -48,8 +48,23 @@ body {
   color: #fff;
   padding: 10px 17px;
   line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+}
+.tableHeader .create.accounts:hover:after {
+  content: "\f007";
+}
+.tableHeader .create:hover {
+  background-color: #d91300;
+  transition: background-color 0.2s ease-out;
+}
+.tableHeader .create:hover:after {
+  -webkit-transform: rotate(360deg);
+  transition: all 0.2s ease-out;
 }
 .tableHeader .create:after {
   font-family: "FontAwesome";
   content: "\f067";
+  -webkit-transform: rotate(0deg);
+  transition: all 0.2s ease-out;
 }

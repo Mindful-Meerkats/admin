@@ -27,17 +27,39 @@
 	}
 
 	.create {
-	  float: right;
-	  margin: 10px;
-	  border-radius: 50%;
-	  position: relative;
-	  background-color: @red;
-	  color: #fff;
-	  padding: 10px 17px;
-	  line-height: 1.5;
+	  	float: right;
+	  	margin: 10px;
+	  	border-radius: 50%;
+	  	position: relative;
+	  	background-color: @red;
+	  	color: #fff;
+	  	padding: 10px 17px;
+	  	line-height: 1.5;
+	  	cursor: pointer;
+	  	transition: background-color .2s ease-out;
+
+	  	&.accounts {
+			&:hover {
+				&:after {
+					content: "\f007";
+				}
+			}
+	  	}
+
+	  	&:hover {
+	  		background-color: darken(@red, 20%);
+	  		transition: background-color .2s ease-out;
+
+	  		&:after {
+	  			-webkit-transform: rotate( 360deg );
+	  			transition: all .2s ease-out;
+	  		}
+	  	}
 	  	&:after {
 	  		font-family: "FontAwesome";
 	  		content: "\f067";
+	  		-webkit-transform: rotate( 0deg );
+	  		transition: all .2s ease-out;
 	  	}
 	}
 }
