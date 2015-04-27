@@ -16,6 +16,7 @@ body {
 .tableAdmin {
   border: 1px solid #dcdcdc;
   border-radius: 4px;
+  font-family: 'Lato', Helvetica, sans-serif;
 }
 .tableHeader {
   position: relative;
@@ -67,4 +68,110 @@ body {
   content: "\f067";
   -webkit-transform: rotate(0deg);
   transition: all 0.2s ease-out;
+}
+.tableGrid .tableGridHeaderRow .tableGridHeaderCell {
+  display: inline-block;
+  max-width: 200px;
+  width: 100%;
+}
+.tableGridBody .tableGridRow .tableGridCell {
+  display: inline-block;
+  max-width: 200px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tableForm {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.tableForm form {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  bottom: 10%;
+  left: 5%;
+  background-color: white;
+  padding: 1em 1em 60px 1em;
+  z-index: 1000;
+  overflow-y: scroll;
+  animation: formIn 1s 1;
+  -webkit-animation: formIn 0.5s 1;
+  transform: translate(0, 0);
+}
+.tableForm fieldset {
+  border: none;
+}
+.tableForm fieldset input[type="text"],
+.tableForm fieldset input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  outline: none;
+}
+.tableForm .error {
+  font-weight: bold;
+  position: absolute;
+  top: -3px;
+  right: 0.5em;
+  font-size: 16px;
+  z-index: 100;
+  background-color: maroon;
+  color: white;
+  padding: 0 0.5em;
+  border-radius: 3px;
+  max-width: 50%;
+}
+.tableForm .cancel,
+.tableForm .submit {
+  padding: 5px 30px;
+  border-radius: 4px;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.tableForm .cancel {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  background-color: #ffc;
+  color: #333333;
+}
+.tableForm .submit {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  background-color: green;
+  color: white;
+}
+@-webkit-keyframes formIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+    -webkit-transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes formIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+    -webkit-transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }

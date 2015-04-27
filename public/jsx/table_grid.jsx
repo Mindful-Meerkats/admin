@@ -124,10 +124,10 @@ var TableForm = React.createClass({
 		return (<div className='tableForm'>
 			<div className='blocker' onClick={this.closeMe}/>
 				<form>
-				  {this.renderFields()}			      
+				  {this.renderFields()}
+				    <div className='cancel' onClick={this.discardMe}>Cancel</div>
+				    <div className='submit' onClick={this.saveMe}>Submit</div>
 			    </form>
-			    <div className='cancel' onClick={this.discardMe}>Cancel</div>
-			    <div className='submit' onClick={this.saveMe}>Submit</div>
 			</div>)
 	}
 });

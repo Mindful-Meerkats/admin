@@ -1,6 +1,7 @@
 .tableAdmin {
 	border: 1px solid @borderColor;
 	border-radius: 4px;
+	font-family: @fontStack;
 }
 
 .tableHeader {
@@ -63,3 +64,122 @@
 	  	}
 	}
 }
+
+.tableGrid {
+	.tableGridHeaderRow {
+		.tableGridHeaderCell {
+			display: inline-block;
+			max-width: 200px;
+			width: 100%;
+		}
+	}
+}
+
+
+.tableGridBody {
+	.tableGridRow {
+		.tableGridCell {
+			display: inline-block;
+			max-width: 200px;
+			width: 100%;
+			white-space: nowrap; 
+			overflow: hidden; 
+			text-overflow: ellipsis;
+		}
+	}
+}
+
+
+.tableForm { 
+ 	position: fixed; 
+ 	top: 0; 
+ 	right: 0; 
+ 	bottom: 0;
+ 	left: 0;
+ 	background-color: rgba( 0, 0, 0, 0.8 );
+
+ 	form { 
+ 		position: absolute;
+ 		top: 10%; 
+ 		right: 5%;
+ 		bottom: 10%; 
+ 		left: 5%;
+ 		background-color: white;
+ 		padding: 1em 1em 60px 1em;
+ 		z-index: 1000; overflow-y: scroll;
+ 		animation: formIn 1s 1; -webkit-animation: formIn 0.5s 1; transform: translate(0,0);
+ 	}
+	fieldset { 
+		border: none;
+
+		input[type="text"], input[type="password"] {
+		  width: 100%;
+		  padding: 10px;
+		  font-size: 16px;
+		  border-radius: 4px;
+		  border: 1px solid #dcdcdc;
+		  outline: none;			
+		}
+	}
+	legend { 
+
+	}
+
+	.error { 
+		font-weight: bold; 
+		position: absolute; 
+		top: -3px; 
+		right: 0.5em; 
+		font-size: 16px; 
+		z-index: 100; 
+		background-color: maroon;
+		color: white; 
+		padding: 0 0.5em; 
+		border-radius: 3px; 
+		max-width: 50%;
+	}
+	.cancel, .submit { 
+		padding: 5px 30px;
+		border-radius: 4px;
+		font-size: 25px; 
+		cursor: pointer;
+		z-index: 1000;
+		&:hover {
+
+		}
+	}
+	.cancel { 
+		position: absolute; 
+		bottom: 10%; 
+		left:  5%;
+		background-color: #ffc;
+		color: #333
+	}	
+	.submit { position: absolute; bottom: 10%; right: 5%; background-color: green; color: white }
+
+}
+
+@-webkit-keyframes formIn {
+   0%   { 
+   	opacity: 0;
+   	transform: scale(.1);
+   	-webkit-transform: scale(.1);
+   }
+   100% { 
+   	opacity: 1; 
+   	transform: scale(1); 
+   	-webkit-transform: scale(1);
+   }
+ }
+ @keyframes formIn {
+   0%   { 
+   	opacity: 0;
+   	transform: scale(.1);
+   	-webkit-transform: scale(.1);
+   }
+   100% { 
+   	opacity: 1; 
+   	transform: scale(1); 
+   	-webkit-transform: scale(1);
+   }
+ }
