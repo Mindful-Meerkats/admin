@@ -180,7 +180,7 @@ var TableAdmin = React.createClass({
 			<div className={"tableAdmin " + this.props.className} >
 			  <div className="tableHeader">			    			    
 			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder={"Type to search in " + this.state.title} value={this.state.search}/>
-			    <div className={"create " +  this.state.title.toLowerCase() } onClick={this.openForm}></div>
+			    <div className={"create " +  this.props.className } onClick={this.openForm}></div>
 			   </div>
 			   <TableGrid fields={this.state.gridFields} rows={this.state.rows} search={this.state.search} onRecord={this.openForm}/>
 			   {form}
