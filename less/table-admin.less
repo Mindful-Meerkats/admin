@@ -115,16 +115,13 @@
 				max-width: 100%;
 			}
 		}
-		&.alt {
-			background-color: #f9f9f9
-		}
 		&:hover {
 			border-top: 1px solid #d0d0d0;
 			border-bottom: 1px solid #d0d0d0;
 		}
 
 		&:nth-child( odd ){
-			border-left: 1px solid #111;
+			background-color: #f9f9f9
 		}
 	}
 }
@@ -155,9 +152,16 @@
 	  	border-radius: 4px;
 	  	border: 1px solid @borderColor;
 	  	margin-bottom: 1em;
+	  	padding: 0;
+	  	min-height: 2em;
 
 	  	.tableFormEditorText {
-	  		padding: 10px;
+	  		input { padding: 10px; border-radius: 4px; }
+	  	}
+	  	.tableFormEditorJSON {
+	  		margin-left: 100px; 	  		
+	  		pre { border-radius: 4px }
+			.ace_editor { height: 70px; border-radius: 4px; }
 	  	}
 
 		legend { 

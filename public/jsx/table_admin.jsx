@@ -19,12 +19,12 @@ var TableGrid = React.createClass({
 	filteredSortedRows:function(){
          return this.props.rows.filter( util.search_object( this.props.search.split() ) ).sort( util.sorter( this.state.sort, this.state.sortDir ) );				
 	},
-	renderBody:function(){		
+	renderBody:function(){				
 		var rows = this.filteredSortedRows().map( function(r,i){
 			var cells = this.state.fields.map( function(k){
-				return <div className={"tableGridCell " + k} key={r.id + "_" + k}>{r[k]}</div>;
+				return <div className={"tableGridCell " + k} key={r.id + "_" + k}>{util.stringify(r[k])}</div>;
 			});						
-			return <div className={"tableGridRow" + ((i%2) === 0 ? " alt" : "" )} onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}</div>;
+			return <div className="tableGridRow" onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}</div>;
 		},this);	
 		return <div className="tableGridBody">{rows}</div>;	
 	},
@@ -49,8 +49,15 @@ var TableFormEditorJSON = React.createClass({
 		return {}			
 	},	
 	componentDidMount: function(){
-		var editor = ace.edit( this.refs.aceEditor.getDOMNode() );
-		editor.getSession().setMode("ace/mode/json")
+		var ts = 'ace' + Date.now();
+	    var w = $('<pre id="' + ts + '">').text( JSON.stringify( this.props.data, null, "\t" ) );
+	    this.refs.aceEditor.getDOMNode().innerHTML = "";
+	    w.appendTo( this.refs.aceEditor.getDOMNode() );	    
+		var editor = ace.edit( ts );		
+		editor.setOptions({ maxLines: Infinity, minLines: 3, showPrintMargin: false });
+		editor.setAutoScrollEditorIntoView(true);
+		editor.getSession().setMode("ace/mode/json");
+		editor.setTheme("ace/theme/chrome");
 		var me = this;
 		editor.on('input', function(){
 			var result;
@@ -61,7 +68,7 @@ var TableFormEditorJSON = React.createClass({
 		});
 	},
 	render:function(){						
-		return <div className='tableFormEditorJSON'><div ref="aceEditor">{JSON.stringify( this.props.data, null, "\t" )}</div></div>;
+		return <div className='tableFormEditorJSON'><div ref="aceEditor"></div></div>;
 	}
 });
 
