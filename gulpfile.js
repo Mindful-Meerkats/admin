@@ -5,6 +5,8 @@ var reactify = require('reactify');
 var notify = require('gulp-notify');
 var taskListing = require('gulp-task-listing');
 var nodemon = require('gulp-nodemon');
+var less = require('gulp-less');
+var path = require('path');
 
 var sourcesDir = './react',
     appEntryPoint = "main.js",
@@ -14,6 +16,13 @@ var sourcesDir = './react',
 // Add a task to render the output 
 gulp.task('help', taskListing);
 
+gulp.task('less', function() {
+  return gulp.src('./less/*.less')
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }))
+    .pipe(gulp.dest('./public/css'));
+});
 
 gulp.task('server', function(){
 	nodemon({
@@ -32,8 +41,9 @@ gulp.task('browserify', function() {
     .pipe(notify("Bundling done."));
 });
 
-gulp.task('default', ['server'])
+gulp.task('default', ['server', 'watch']);
 
 gulp.task('watch', function() {
-  gulp.watch(sourcesDir + '/' + "*.js", ['browserify']);
+  gulp.watch('./less/*.less', ['less']);
+  //gulp.watch(sourcesDir + '/' + "*.js", ['browserify']);
 });
