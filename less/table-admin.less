@@ -75,6 +75,7 @@
 .tableGrid {
 	.tableGridHeaderRow {
 		border-bottom: 1px dashed @borderColor;
+		cursor: pointer;
 		.tableGridHeaderCell {
 			display: inline-block;
 			max-width: 200px;
@@ -86,13 +87,21 @@
 			-moz-user-select: none;
 			-ms-user-select: none;
 			user-select: none;
+			@media (max-width: 768px) {				
+				display: block; 
+				max-width: 100%;
+			}
 		}
+		
 	}
 }
 
 
 .tableGridBody {
-	.tableGridRow {
+	.tableGridRow {		
+		cursor: pointer;
+		border-top: 1px solid transparent;
+		border-bottom: 1px solid transparent;		
 		.tableGridCell {
 			display: inline-block;
 			max-width: 200px;
@@ -101,6 +110,17 @@
 			overflow: hidden; 
 			text-overflow: ellipsis;
 			padding: 10px 20px;
+			@media (max-width: 768px) {				
+				display: block; 
+				max-width: 100%;
+			}
+		}
+		&.alt {
+			background-color: #f9f9f9
+		}
+		&:hover {
+			border-top: 1px solid #d0d0d0;
+			border-bottom: 1px solid #d0d0d0;
 		}
 
 		&:nth-child( odd ){
@@ -115,8 +135,7 @@
  	top: 0; 
  	right: 0; 
  	bottom: 0;
- 	left: 0;
- 	background-color: rgba( 0, 0, 0, 0.8 );
+ 	left: 0; 	
 
  	form { 
  		position: absolute;

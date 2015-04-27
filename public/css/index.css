@@ -11,8 +11,25 @@ body {
   padding: 0;
   background-color: #f9f9f9;
 }
+body,
+html {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .container {
   padding: 20px;
+}
+.blocker {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 @-webkit-keyframes formIn {
   0% {
@@ -104,6 +121,7 @@ body {
 }
 .tableGrid .tableGridHeaderRow {
   border-bottom: 1px dashed #dcdcdc;
+  cursor: pointer;
 }
 .tableGrid .tableGridHeaderRow .tableGridHeaderCell {
   display: inline-block;
@@ -117,6 +135,17 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+@media (max-width: 768px) {
+  .tableGrid .tableGridHeaderRow .tableGridHeaderCell {
+    display: block;
+    max-width: 100%;
+  }
+}
+.tableGridBody .tableGridRow {
+  cursor: pointer;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
 .tableGridBody .tableGridRow .tableGridCell {
   display: inline-block;
   max-width: 200px;
@@ -125,6 +154,19 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 10px 20px;
+}
+@media (max-width: 768px) {
+  .tableGridBody .tableGridRow .tableGridCell {
+    display: block;
+    max-width: 100%;
+  }
+}
+.tableGridBody .tableGridRow.alt {
+  background-color: #f9f9f9;
+}
+.tableGridBody .tableGridRow:hover {
+  border-top: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
 }
 .tableGridBody .tableGridRow:nth-child( odd ) {
   border-left: 1px solid #111;
@@ -135,7 +177,6 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
 }
 .tableForm form {
   position: absolute;

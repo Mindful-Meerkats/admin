@@ -21,7 +21,7 @@
     "browserify": "^9.0.8",
     "combine-css": "0.0.2",
     "gulp": "^3.8.11",
-    "gulp-less": "^3.0.3",
+    "gulp-less": "~3.0.3",
     "gulp-nodemon": "~2.0.2",
     "gulp-notify": "^2.2.0",
     "gulp-task-listing": "~1.0.0",

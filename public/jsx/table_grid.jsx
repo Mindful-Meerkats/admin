@@ -20,11 +20,11 @@ var TableGrid = React.createClass({
          return this.props.rows.filter( util.search_object( this.props.search.split() ) ).sort( util.sorter( this.state.sort, this.state.sortDir ) );				
 	},
 	renderBody:function(){		
-		var rows = this.filteredSortedRows().map( function(r){
+		var rows = this.filteredSortedRows().map( function(r,i){
 			var cells = this.state.fields.map( function(k){
 				return <div className={"tableGridCell " + k} key={r.id + "_" + k}>{r[k]}</div>;
 			});						
-			return <div className="tableGridRow" onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}</div>;
+			return <div className={"tableGridRow" + ((i%2) === 0 ? " alt" : "" )} onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}</div>;
 		},this);	
 		return <div className="tableGridBody">{rows}</div>;	
 	},
@@ -91,16 +91,16 @@ var TableForm = React.createClass({
 	discardMe:function(){
 		this.props.onDiscard();
 	},
-	closeMe:function(){		
+	closeMe:function(){				
 		if( this.state.dirty && confirm('Save changes?') ) this.saveMe(); else this.discardMe();
 	},
 	saveMe:function(){
 		this.props.onSave( this.state.data );		
 	},
-	sendInput:function(k,i){	
+	sendInput:function(k,i){	    	
 	    var d = this.state.data;
 	    d[k] = i;		    
-	    this.setState( { data: d } );				
+	    this.setState( { data: d, dirty: true } );				
 	},
 	shouldComponentUpdate:function(){
 		return false;

@@ -11,9 +11,29 @@ html, body {
 	background-color: #f9f9f9;
 }
 
+// disable text selection
+body, html {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .container {
 	padding: 20px; // remove this later;
 }
+
+.blocker {
+	background-color: rgba(0,0,0,0.8);
+	position: absolute;
+	top: 0; 
+	right: 0; 
+	left: 0; 
+	bottom: 0;
+}
+
 
 // Import other modules here
 @import './variables.less';
