@@ -22,11 +22,11 @@ var TableGrid = React.createClass({
 	renderBody:function(){		
 		var rows = this.filteredSortedRows().map( function(r){
 			var cells = this.state.fields.map( function(k){
-				return <td className={k} key={r.id + "_" + k}>{r[k]}</td>;
+				return <div className={"tableGridCell " + k} key={r.id + "_" + k}>{r[k]}</div>;
 			});						
-			return <tr onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}<td></td></tr>;
+			return <div className="tableGridRow" onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}</div>;
 		},this);	
-		return <tbody>{rows}</tbody>;	
+		return <div className="tableGridBody">{rows}</div>;	
 	},
 	renderHeader:function(){
 		var hcells = this.state.fields.map( function(k){
@@ -35,12 +35,12 @@ var TableGrid = React.createClass({
 		   	if( this.state.sortDir === "asc" ) icon = <i className="fa fa-sort-asc"></i>;
 		   	else                               icon = <i className="fa fa-sort-desc"></i>;
 		   }		   		  
-           return <td onClick={this.setSort.bind(this,k)} className={k} key={"header_" + k}>{k.humanize()}{icon}</td>;
+           return <div className="tableGridHeaderCell" onClick={this.setSort.bind(this,k)} className={k} key={"header_" + k}>{k.humanize()}{icon}</div>;
 		},this);
-		return <thead>{hcells}<td></td></thead>;
+		return <div className="tableGridHeaderRow">{hcells}</div>;
 	},	
 	render: function(){		    		
-		return <div className="tableGrid"><table>{this.renderHeader()}{this.renderBody()}</table></div>;
+		return <div className="tableGrid">{this.renderHeader()}{this.renderBody()}</div>;
 	}
 });	
 
