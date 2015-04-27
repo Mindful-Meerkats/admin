@@ -9,6 +9,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: #f9f9f9;
 }
 .container {
   padding: 20px;
@@ -41,6 +42,7 @@ body {
   border: 1px solid #dcdcdc;
   border-radius: 4px;
   font-family: 'Lato', Helvetica, sans-serif;
+  background-color: #fff;
 }
 .tableAdmin i.fa {
   float: right;
@@ -57,6 +59,7 @@ body {
   font-family: 'Lato', Helvetica, sans-serif;
   font-weight: 300;
   font-size: 20px;
+  border-top-left-radius: 4px;
 }
 .tableHeader input[type="search"]:active,
 .tableHeader input[type="search"]:focus {
@@ -73,18 +76,20 @@ body {
   margin: 10px;
   border-radius: 50%;
   position: relative;
-  background-color: #ff5140;
+  background-color: #cf0b00;
   color: #fff;
   padding: 10px 17px;
   line-height: 1.5;
   cursor: pointer;
   transition: background-color 0.2s ease-out;
+  -webkit-filter: drop-shadow(1px 4px 4px #999999);
+  filter: drop-shadow(1px 4px 4px #999999);
 }
 .tableHeader .create.accounts:hover:after {
   content: "\f007";
 }
 .tableHeader .create:hover {
-  background-color: #d91300;
+  background-color: #ff4136;
   transition: background-color 0.2s ease-out;
 }
 .tableHeader .create:hover:after {
@@ -97,11 +102,20 @@ body {
   -webkit-transform: rotate(0deg);
   transition: all 0.2s ease-out;
 }
+.tableGrid .tableGridHeaderRow {
+  border-bottom: 1px dashed #dcdcdc;
+}
 .tableGrid .tableGridHeaderRow .tableGridHeaderCell {
   display: inline-block;
   max-width: 200px;
   width: 100%;
   padding: 10px 20px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .tableGridBody .tableGridRow .tableGridCell {
   display: inline-block;
@@ -111,6 +125,9 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 10px 20px;
+}
+.tableGridBody .tableGridRow:nth-child( odd ) {
+  border-left: 1px solid #111;
 }
 .tableForm {
   position: fixed;
@@ -127,6 +144,7 @@ body {
   bottom: 10%;
   left: 5%;
   background-color: white;
+  border-radius: 4px;
   padding: 1em 1em 60px 1em;
   z-index: 1000;
   overflow-y: scroll;
@@ -168,6 +186,10 @@ body {
   padding-left: 110px;
   border: none;
 }
+.tableForm fieldset.email legend:after {
+  font-family: "FontAwesome";
+  content: "\f1fa";
+}
 .tableForm .error {
   font-weight: bold;
   position: absolute;
@@ -189,12 +211,23 @@ body {
   cursor: pointer;
   z-index: 500;
   color: #fff;
+  transition: background-color 0.2s ease-out;
+}
+.tableForm .cancel:hover,
+.tableForm .submit:hover {
+  transition: background-color 0.2s ease-out;
 }
 .tableForm .cancel {
-  background-color: #FF4136;
+  background-color: #cf0b00;
   float: left;
 }
+.tableForm .cancel:hover {
+  background-color: #ff4136;
+}
 .tableForm .submit {
-  background-color: #0074D9;
+  background-color: #0074d9;
   float: right;
+}
+.tableForm .submit:hover {
+  background-color: #0d8eff;
 }
