@@ -227,9 +227,10 @@ html {
   padding-left: 110px;
   border: none;
 }
-.tableForm fieldset.email legend:after {
+.tableForm fieldset.email legend:before {
   font-family: "FontAwesome";
   content: "\f1fa";
+  padding-right: 1em;
 }
 .tableForm .error {
   font-weight: bold;
