@@ -117,7 +117,7 @@ var TableForm = React.createClass({
 			} else if( fieldType === 'password' ){
 				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
 			}
-			return <fieldset key={this.state.data.id + "_" + fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
+			return <fieldset key={fieldName} className={fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
 		}, this);
 	},
 	render: function(){		    
