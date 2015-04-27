@@ -93,14 +93,18 @@
 
 	
 </script>
-<script src='/jsx/table_grid.jsx' type="text/jsx"></script>
+<script src='/jsx/table_admin.jsx' type="text/jsx"></script>
+<script src='/jsx/tab_stack.jsx' type="text/jsx"></script>
 <div id='container'></div>
 <script type="text/jsx">
 
 	React.render(
 
 	  <div className="container">		
-	  	<TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password" />
+	  	<TabStack>
+	  		<TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password" />
+	  		<TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
+	  	</TabStack>
 	  </div>,
 	  document.getElementById('container')
 	);

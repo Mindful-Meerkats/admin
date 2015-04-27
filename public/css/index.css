@@ -241,3 +241,17 @@ html {
   background-color: #0074D9;
   float: right;
 }
+.tabStack .tabLabel {
+  font-family: 'Lato', Helvetica, sans-serif;
+  line-height: 1.6;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  display: inline-block;
+  min-width: 200px;
+  padding: 1em;
+  cursor: pointer;
+}
+.tabStack .tabLabel.selected {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
