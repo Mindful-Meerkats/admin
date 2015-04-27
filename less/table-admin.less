@@ -24,7 +24,12 @@
 			outline: none;
 		}
 	}
-
+	input[type="search"]::-webkit-search-decoration,
+	input[type="search"]::-webkit-search-cancel-button,
+	input[type="search"]::-webkit-search-results-button,
+	input[type="search"]::-webkit-search-results-decoration {
+	  display: none;
+	}
 	.create {
 	  	float: right;
 	  	margin: 10px;
@@ -107,7 +112,7 @@
  		background-color: white;
  		padding: 1em 1em 60px 1em;
  		z-index: 1000; overflow-y: scroll;
- 		animation: formIn 1s 1; -webkit-animation: formIn 0.5s 1; transform: translate(0,0);
+ 		animation: formIn .2s; -webkit-animation: formIn .2s;
  	}
 	fieldset { 
 		position: relative;
@@ -183,28 +188,3 @@
 	}
 
 }
-
-@-webkit-keyframes formIn {
-   0%   { 
-   	opacity: 0;
-   	transform: scale(.1);
-   	-webkit-transform: scale(.1);
-   }
-   100% { 
-   	opacity: 1; 
-   	transform: scale(1); 
-   	-webkit-transform: scale(1);
-   }
- }
- @keyframes formIn {
-   0%   { 
-   	opacity: 0;
-   	transform: scale(.1);
-   	-webkit-transform: scale(.1);
-   }
-   100% { 
-   	opacity: 1; 
-   	transform: scale(1); 
-   	-webkit-transform: scale(1);
-   }
- }

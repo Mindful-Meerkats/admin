@@ -13,6 +13,30 @@ body {
 .container {
   padding: 20px;
 }
+@-webkit-keyframes formIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+    -webkit-transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes formIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+    -webkit-transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
 .tableAdmin {
   border: 1px solid #dcdcdc;
   border-radius: 4px;
@@ -37,6 +61,12 @@ body {
 .tableHeader input[type="search"]:active,
 .tableHeader input[type="search"]:focus {
   outline: none;
+}
+.tableHeader input[type="search"]::-webkit-search-decoration,
+.tableHeader input[type="search"]::-webkit-search-cancel-button,
+.tableHeader input[type="search"]::-webkit-search-results-button,
+.tableHeader input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }
 .tableHeader .create {
   float: right;
@@ -100,9 +130,8 @@ body {
   padding: 1em 1em 60px 1em;
   z-index: 1000;
   overflow-y: scroll;
-  animation: formIn 1s 1;
-  -webkit-animation: formIn 0.5s 1;
-  transform: translate(0, 0);
+  animation: formIn .2s;
+  -webkit-animation: formIn .2s;
 }
 .tableForm fieldset {
   position: relative;
@@ -168,28 +197,4 @@ body {
 .tableForm .submit {
   background-color: #0074D9;
   float: right;
-}
-@-webkit-keyframes formIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.1);
-    -webkit-transform: scale(0.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
-}
-@keyframes formIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.1);
-    -webkit-transform: scale(0.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
 }
