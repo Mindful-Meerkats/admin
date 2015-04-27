@@ -138,8 +138,7 @@ var TableAdmin = React.createClass({
 			rows: [],
 			gridFields: this.props.gridFields || ("id|" + this.props.fields), 
 			formFields: this.props.formFields || this.props.fields,
-			search: "",
-			icon: this.props.icon || "table",
+			search: "",			
 			title: this.props.title || "Data",
 			record: this.props.record || null
 		} 
@@ -179,8 +178,7 @@ var TableAdmin = React.createClass({
 	    } 
 		return (
 			<div className={"tableAdmin " + this.props.className} >
-			  <div className="tableHeader">
-			    <i className={"fa fa-" + this.state.icon}></i>
+			  <div className="tableHeader">			    
 			    <label>{this.state.title}</label>			    
 			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder="Search..." value={this.state.search}/>
 			    <div className='create' onClick={this.openForm}>Create</div>
