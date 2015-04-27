@@ -81,7 +81,10 @@
 
 
 .tableGridBody {
-	.tableGridRow {
+	.tableGridRow {		
+		cursor: pointer;
+		border-top: 1px solid transparent;
+		border-bottom: 1px solid transparent;
 		.tableGridCell {
 			display: inline-block;
 			max-width: 200px;
@@ -90,6 +93,13 @@
 			overflow: hidden; 
 			text-overflow: ellipsis;
 			padding: 10px 20px;
+		}
+		&.alt {
+			background-color: #f9f9f9
+		}
+		&:hover {
+			border-top: 1px solid #d0d0d0;
+			border-bottom: 1px solid #d0d0d0;
 		}
 	}
 }
