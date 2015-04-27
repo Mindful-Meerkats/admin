@@ -2,6 +2,7 @@
 	border: 1px solid @borderColor;
 	border-radius: 4px;
 	font-family: @fontStack;
+	background-color: #fff;
 	i.fa {
 		float: right;
 		line-height: 1.5;
@@ -18,7 +19,8 @@
 		border: 1px solid transparent;
 		font-family: @fontStack;
 		font-weight: 300;
-		font-size: 20px;	
+		font-size: 20px;
+		border-top-left-radius: 4px;	
 	
 		&:active, &:focus {
 			outline: none;
@@ -35,12 +37,14 @@
 	  	margin: 10px;
 	  	border-radius: 50%;
 	  	position: relative;
-	  	background-color: @red;
+	  	background-color: @darkRed;
 	  	color: #fff;
 	  	padding: 10px 17px;
 	  	line-height: 1.5;
 	  	cursor: pointer;
 	  	transition: background-color .2s ease-out;
+	  	-webkit-filter: drop-shadow(1px 4px 4px #999);
+	  	filter: drop-shadow(1px 4px 4px #999);
 
 	  	&.accounts {
 			&:hover {
@@ -51,7 +55,7 @@
 	  	}
 
 	  	&:hover {
-	  		background-color: darken(@red, 20%);
+	  		background-color: @lightRed;
 	  		transition: background-color .2s ease-out;
 
 	  		&:after {
@@ -70,12 +74,19 @@
 
 .tableGrid {
 	.tableGridHeaderRow {
+		border-bottom: 1px dashed @borderColor;
 		cursor: pointer;
 		.tableGridHeaderCell {
 			display: inline-block;
 			max-width: 200px;
 			width: 100%;
 			padding: 10px 20px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
 			@media (max-width: 768px) {				
 				display: block; 
 				max-width: 100%;
@@ -111,6 +122,10 @@
 			border-top: 1px solid #d0d0d0;
 			border-bottom: 1px solid #d0d0d0;
 		}
+
+		&:nth-child( odd ){
+			border-left: 1px solid #111;
+		}
 	}
 }
 
@@ -129,6 +144,7 @@
  		bottom: 10%; 
  		left: 5%;
  		background-color: white;
+ 		border-radius: 4px;
  		padding: 1em 1em 60px 1em;
  		z-index: 1000; overflow-y: scroll;
  		animation: formIn .2s; -webkit-animation: formIn .2s;
@@ -165,8 +181,10 @@
 		}
 
 		&.email {
-			input[type="text"] {
-
+			legend:before {
+				font-family: "FontAwesome";
+				content: "\f1fa";
+				padding-right: 1em;
 			}
 		}
 	}
@@ -191,19 +209,28 @@
 		cursor: pointer;
 		z-index: 500;
 		color: #fff;
+		transition: background-color .2s ease-out;
 
 		&:hover {
-
-		}
+			transition: background-color .2s ease-out;
+		}		
 	}
 	.cancel { 
-		background-color: #FF4136;
+		background-color: @darkRed;
 		float: left;
+
+		&:hover {
+			background-color: @lightRed;
+		}		
 		
 	}	
 	.submit { 
-		background-color: #0074D9;
+		background-color: @darkBlue;
 		float: right;
+
+		&:hover {
+			background-color: @lightBlue;
+		}
 	}
 
 }
