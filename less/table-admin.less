@@ -2,17 +2,15 @@
 	border: 1px solid @borderColor;
 	border-radius: 4px;
 	font-family: @fontStack;
+	i.fa {
+		float: right;
+		line-height: 1.5;
+	}	
 }
 
 .tableHeader {
 	position: relative;
 	border-bottom: 1px solid @borderColor;
-
-	label {
-		display: none;
-	}
-
-	i.fa { display: none; }
 
 	input[type="search"] {
 		width: 50%;
@@ -71,6 +69,7 @@
 			display: inline-block;
 			max-width: 200px;
 			width: 100%;
+			padding: 10px 20px;
 		}
 	}
 }
@@ -85,6 +84,7 @@
 			white-space: nowrap; 
 			overflow: hidden; 
 			text-overflow: ellipsis;
+			padding: 10px 20px;
 		}
 	}
 }
@@ -110,19 +110,41 @@
  		animation: formIn 1s 1; -webkit-animation: formIn 0.5s 1; transform: translate(0,0);
  	}
 	fieldset { 
-		border: none;
+		position: relative;
+		width: 100%;
+	  	border-radius: 4px;
+	  	border: 1px solid @borderColor;
+	  	margin-bottom: 1em;
+
+	  	.tableFormEditorText {
+	  		padding: 10px;
+	  	}
+
+		legend { 
+			width: 100px;
+			position: absolute;
+			top: 0; bottom: 0; left: 0px;
+			background-color: @borderColor;
+			z-index: 500;
+			text-indent: 10px;
+			line-height: 34px;			
+		}
 
 		input[type="text"], input[type="password"] {
-		  width: 100%;
-		  padding: 10px;
-		  font-size: 16px;
-		  border-radius: 4px;
-		  border: 1px solid #dcdcdc;
-		  outline: none;			
+			position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+		  	width: 100%;
+		  	font-size: 16px;
+		  	padding: 10px;
+		  	outline: none;
+		  	padding-left: 110px;
+		  	border: none;
 		}
-	}
-	legend { 
 
+		&.email {
+			input[type="text"] {
+
+			}
+		}
 	}
 
 	.error { 
@@ -141,21 +163,24 @@
 	.cancel, .submit { 
 		padding: 5px 30px;
 		border-radius: 4px;
-		font-size: 25px; 
+		font-size: 17px; 
 		cursor: pointer;
-		z-index: 1000;
+		z-index: 500;
+		color: #fff;
+
 		&:hover {
 
 		}
 	}
 	.cancel { 
-		position: absolute; 
-		bottom: 10%; 
-		left:  5%;
-		background-color: #ffc;
-		color: #333
+		background-color: #FF4136;
+		float: left;
+		
 	}	
-	.submit { position: absolute; bottom: 10%; right: 5%; background-color: green; color: white }
+	.submit { 
+		background-color: #0074D9;
+		float: right;
+	}
 
 }
 

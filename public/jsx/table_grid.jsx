@@ -32,8 +32,8 @@ var TableGrid = React.createClass({
 		var hcells = this.state.fields.map( function(k){
 		   var icon;		   
 		   if( k === this.state.sort ){
-		   	if( this.state.sortDir === "asc" ) icon = <i className="fa fa-sort-asc"></i>;
-		   	else                               icon = <i className="fa fa-sort-desc"></i>;
+		   	if( this.state.sortDir === "asc" ) icon = <i className="fa fa-chevron-up"></i>;
+		   	else                               icon = <i className="fa fa-chevron-down"></i>;
 		   }		   		  
            return <div className={"tableGridHeaderCell " + k} onClick={this.setSort.bind(this,k)} key={"header_" + k}>{k.humanize()}{icon}</div>;
 		},this);

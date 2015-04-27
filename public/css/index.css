@@ -18,15 +18,13 @@ body {
   border-radius: 4px;
   font-family: 'Lato', Helvetica, sans-serif;
 }
+.tableAdmin i.fa {
+  float: right;
+  line-height: 1.5;
+}
 .tableHeader {
   position: relative;
   border-bottom: 1px solid #dcdcdc;
-}
-.tableHeader label {
-  display: none;
-}
-.tableHeader i.fa {
-  display: none;
 }
 .tableHeader input[type="search"] {
   width: 50%;
@@ -73,6 +71,7 @@ body {
   display: inline-block;
   max-width: 200px;
   width: 100%;
+  padding: 10px 20px;
 }
 .tableGridBody .tableGridRow .tableGridCell {
   display: inline-block;
@@ -81,6 +80,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: 10px 20px;
 }
 .tableForm {
   position: fixed;
@@ -105,16 +105,39 @@ body {
   transform: translate(0, 0);
 }
 .tableForm fieldset {
-  border: none;
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #dcdcdc;
+  margin-bottom: 1em;
+}
+.tableForm fieldset .tableFormEditorText {
+  padding: 10px;
+}
+.tableForm fieldset legend {
+  width: 100px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0px;
+  background-color: #dcdcdc;
+  z-index: 500;
+  text-indent: 10px;
+  line-height: 34px;
 }
 .tableForm fieldset input[type="text"],
 .tableForm fieldset input[type="password"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
-  padding: 10px;
   font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #dcdcdc;
+  padding: 10px;
   outline: none;
+  padding-left: 110px;
+  border: none;
 }
 .tableForm .error {
   font-weight: bold;
@@ -133,23 +156,18 @@ body {
 .tableForm .submit {
   padding: 5px 30px;
   border-radius: 4px;
-  font-size: 25px;
+  font-size: 17px;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 500;
+  color: #fff;
 }
 .tableForm .cancel {
-  position: absolute;
-  bottom: 10%;
-  left: 5%;
-  background-color: #ffc;
-  color: #333333;
+  background-color: #FF4136;
+  float: left;
 }
 .tableForm .submit {
-  position: absolute;
-  bottom: 10%;
-  right: 5%;
-  background-color: green;
-  color: white;
+  background-color: #0074D9;
+  float: right;
 }
 @-webkit-keyframes formIn {
   0% {
