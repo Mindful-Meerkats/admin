@@ -156,12 +156,11 @@
 	  	min-height: 2em;
 	  	
 	  	.tableFormEditorText {
-	  		input { padding: 10px; border-radius: 4px; }
+	  		margin-left: 100px;
 	  	}
-
 	  	.tableFormEditorJSON {
 	  		margin-left: 100px; 	  		
-	  		pre { border-radius: 4px }
+	  		pre { border-radius: 0px 4px 4px 0px }
 			.ace_editor { height: 70px; border-radius: 4px; }
 	  	}
 	  	
@@ -176,13 +175,12 @@
 		}
 
 		input[type="text"], input[type="password"] {
-			position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-		  	width: 100%;
+			width: 100%;
 		  	font-size: 16px;
 		  	padding: 10px;
-		  	outline: none;
-		  	padding-left: 110px;
+		  	outline: none;		  	
 		  	border: none;
+		  	border-radius: 0px 4px 4px 0px;
 		}
 
 		&.email {
