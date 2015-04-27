@@ -178,7 +178,7 @@ var TableAdmin = React.createClass({
 	       form = <TableForm fields={this.state.formFields} data={this.state.record} onSave={this.saveForm} onDiscard={this.discardForm}/>;	
 	    } 
 		return (
-			<div className="tableAdmin">
+			<div className={"tableAdmin " + this.props.className} >
 			  <div className="tableHeader">
 			    <i className={"fa fa-" + this.state.icon}></i>
 			    <label>{this.state.title}</label>			    
