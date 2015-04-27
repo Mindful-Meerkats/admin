@@ -1,0 +1,43 @@
+.tableAdmin {
+	border: 1px solid @borderColor;
+	border-radius: 4px;
+}
+
+.tableHeader {
+	position: relative;
+	border-bottom: 1px solid @borderColor;
+
+	label {
+		display: none;
+	}
+
+	i.fa { display: none; }
+
+	input[type="search"] {
+		width: 50%;
+		padding: 20px;
+		border: 1px solid transparent;
+		font-family: @fontStack;
+		font-weight: 300;
+		font-size: 20px;	
+	
+		&:active, &:focus {
+			outline: none;
+		}
+	}
+
+	.create {
+	  float: right;
+	  margin: 10px;
+	  border-radius: 50%;
+	  position: relative;
+	  background-color: @red;
+	  color: #fff;
+	  padding: 10px 17px;
+	  line-height: 1.5;
+	  	&:after {
+	  		font-family: "FontAwesome";
+	  		content: "\f067";
+	  	}
+	}
+}

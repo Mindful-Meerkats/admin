@@ -182,8 +182,8 @@ var TableAdmin = React.createClass({
 			  <div className="tableHeader">
 			    <i className={"fa fa-" + this.state.icon}></i>
 			    <label>{this.state.title}</label>			    
-			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder="Search..." value={this.state.search}/>
-			    <div className='create' onClick={this.openForm}>Create</div>
+			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder="Start typing for search.." value={this.state.search}/>
+			    <div className='create' onClick={this.openForm}></div>
 			   </div>
 			   <TableGrid fields={this.state.gridFields} rows={this.state.rows} search={this.state.search} onRecord={this.openForm}/>
 			   {form}

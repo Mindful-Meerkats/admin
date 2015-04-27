@@ -1,0 +1,55 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400);
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  padding: 20px;
+}
+.tableAdmin {
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+}
+.tableHeader {
+  position: relative;
+  border-bottom: 1px solid #dcdcdc;
+}
+.tableHeader label {
+  display: none;
+}
+.tableHeader i.fa {
+  display: none;
+}
+.tableHeader input[type="search"] {
+  width: 50%;
+  padding: 20px;
+  border: 1px solid transparent;
+  font-family: 'Lato', Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+.tableHeader input[type="search"]:active,
+.tableHeader input[type="search"]:focus {
+  outline: none;
+}
+.tableHeader .create {
+  float: right;
+  margin: 10px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #ff5140;
+  color: #fff;
+  padding: 10px 17px;
+  line-height: 1.5;
+}
+.tableHeader .create:after {
+  font-family: "FontAwesome";
+  content: "\f067";
+}

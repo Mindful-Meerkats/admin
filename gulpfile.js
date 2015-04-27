@@ -17,7 +17,7 @@ var sourcesDir = './react',
 gulp.task('help', taskListing);
 
 gulp.task('less', function() {
-  return gulp.src('./less/*.less')
+  return gulp.src('./less/index.less')
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
@@ -41,7 +41,7 @@ gulp.task('browserify', function() {
     .pipe(notify("Bundling done."));
 });
 
-gulp.task('default', ['server', 'watch']);
+gulp.task('default', ['server', 'less', 'watch']);
 
 gulp.task('watch', function() {
   gulp.watch('./less/*.less', ['less']);
