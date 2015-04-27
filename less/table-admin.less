@@ -70,12 +70,18 @@
 
 .tableGrid {
 	.tableGridHeaderRow {
+		cursor: pointer;
 		.tableGridHeaderCell {
 			display: inline-block;
 			max-width: 200px;
 			width: 100%;
 			padding: 10px 20px;
+			@media (max-width: 768px) {				
+				display: block; 
+				max-width: 100%;
+			}
 		}
+		
 	}
 }
 
@@ -84,7 +90,7 @@
 	.tableGridRow {		
 		cursor: pointer;
 		border-top: 1px solid transparent;
-		border-bottom: 1px solid transparent;
+		border-bottom: 1px solid transparent;		
 		.tableGridCell {
 			display: inline-block;
 			max-width: 200px;
@@ -93,6 +99,10 @@
 			overflow: hidden; 
 			text-overflow: ellipsis;
 			padding: 10px 20px;
+			@media (max-width: 768px) {				
+				display: block; 
+				max-width: 100%;
+			}
 		}
 		&.alt {
 			background-color: #f9f9f9
@@ -110,8 +120,7 @@
  	top: 0; 
  	right: 0; 
  	bottom: 0;
- 	left: 0;
- 	background-color: rgba( 0, 0, 0, 0.8 );
+ 	left: 0; 	
 
  	form { 
  		position: absolute;

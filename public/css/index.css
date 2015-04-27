@@ -22,6 +22,14 @@ html {
 .container {
   padding: 20px;
 }
+.blocker {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
 @-webkit-keyframes formIn {
   0% {
     opacity: 0;
@@ -106,11 +114,20 @@ html {
   -webkit-transform: rotate(0deg);
   transition: all 0.2s ease-out;
 }
+.tableGrid .tableGridHeaderRow {
+  cursor: pointer;
+}
 .tableGrid .tableGridHeaderRow .tableGridHeaderCell {
   display: inline-block;
   max-width: 200px;
   width: 100%;
   padding: 10px 20px;
+}
+@media (max-width: 768px) {
+  .tableGrid .tableGridHeaderRow .tableGridHeaderCell {
+    display: block;
+    max-width: 100%;
+  }
 }
 .tableGridBody .tableGridRow {
   cursor: pointer;
@@ -126,6 +143,12 @@ html {
   text-overflow: ellipsis;
   padding: 10px 20px;
 }
+@media (max-width: 768px) {
+  .tableGridBody .tableGridRow .tableGridCell {
+    display: block;
+    max-width: 100%;
+  }
+}
 .tableGridBody .tableGridRow.alt {
   background-color: #f9f9f9;
 }
@@ -139,7 +162,6 @@ html {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
 }
 .tableForm form {
   position: absolute;

@@ -91,16 +91,16 @@ var TableForm = React.createClass({
 	discardMe:function(){
 		this.props.onDiscard();
 	},
-	closeMe:function(){		
+	closeMe:function(){				
 		if( this.state.dirty && confirm('Save changes?') ) this.saveMe(); else this.discardMe();
 	},
 	saveMe:function(){
 		this.props.onSave( this.state.data );		
 	},
-	sendInput:function(k,i){	
+	sendInput:function(k,i){	    	
 	    var d = this.state.data;
 	    d[k] = i;		    
-	    this.setState( { data: d } );				
+	    this.setState( { data: d, dirty: true } );				
 	},
 	shouldComponentUpdate:function(){
 		return false;
