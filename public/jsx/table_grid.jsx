@@ -35,7 +35,7 @@ var TableGrid = React.createClass({
 		   	if( this.state.sortDir === "asc" ) icon = <i className="fa fa-sort-asc"></i>;
 		   	else                               icon = <i className="fa fa-sort-desc"></i>;
 		   }		   		  
-           return <div className="tableGridHeaderCell" onClick={this.setSort.bind(this,k)} className={k} key={"header_" + k}>{k.humanize()}{icon}</div>;
+           return <div className={"tableGridHeaderCell " + k} onClick={this.setSort.bind(this,k)} key={"header_" + k}>{k.humanize()}{icon}</div>;
 		},this);
 		return <div className="tableGridHeaderRow">{hcells}</div>;
 	},	
