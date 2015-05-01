@@ -1,6 +1,6 @@
 .tableAdmin {
 	border: 1px solid @borderColor;
-	border-radius: 4px;
+	border-radius: 0 4px 4px 4px;
 	font-family: @fontStack;
 	background-color: #fff;
 	i.fa {
@@ -15,12 +15,11 @@
 
 	input[type="search"] {
 		width: 50%;
-		padding: 20px;
-		border: 1px solid transparent;
+		padding: 20px;		
 		font-family: @fontStack;
 		font-weight: 300;
-		font-size: 20px;
-		border-top-left-radius: 4px;	
+		font-size: 20px;		
+		border: none;		
 	
 		&:active, &:focus {
 			outline: none;
@@ -73,6 +72,8 @@
 }
 
 .tableGrid {
+	border-radius: 0px 0px 4px 4px;
+	overflow: hidden;
 	.tableGridHeaderRow {
 		border-bottom: 1px dashed @borderColor;
 		cursor: pointer;
@@ -97,7 +98,7 @@
 }
 
 
-.tableGridBody {
+.tableGridBody {	
 	.tableGridRow {		
 		cursor: pointer;
 		border-top: 1px solid transparent;
