@@ -27,7 +27,7 @@ everyauth.everymodule.findUserById(function( id, callback ){
      });
 
 app.use(bodyParser());
-app.use(cookieParser('mindfulmeerkats'));
+app.use(cookieParser('oi3ifh823e9'));
 app.use(session({
   genid: function(req) {
     return uuid.v4();
@@ -36,12 +36,14 @@ app.use(session({
   saveUninitialized: false,
   resave: false
 }));
-app.use(everyauth.middleware(app));
+app.use(everyauth.middleware( app ));
+
+app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function( req, res ){
-	res.sendFile(__dirname + '/public/index.html');
+	res.render('index');
 });
 
 
