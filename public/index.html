@@ -24,7 +24,7 @@
 	    });
     };
     api.post = function( url, data, cb ){
-    	
+
     	$.ajax({
 	      url: api.server + url + (data.id ? '/' + data.id : ''),
 	      dataType: 'json',
@@ -34,23 +34,23 @@
 	      	cb();
 	      }.bind(this),
 	      error: function( xhr, status, err ){
-	      	alert( status + ": " + err.toString() );	        
+	      	alert( status + ": " + err.toString() );
 	      }.bind(this)
-	    });	
+	    });
     };
-    api.put = function( url, data, cb ){    	
+    api.put = function( url, data, cb ){
     	$.ajax({
 	      url: api.server + url,
 	      dataType: 'json',
 	      method: 'put',
 	      data: data,
-	      success: function( data ){	      	
+	      success: function( data ){
 	      	cb();
 	      }.bind(this),
 	      error: function( xhr, status, err ){
-	      	alert( status + ": " + err.toString() );	        
+	      	alert( status + ": " + err.toString() );
 	      }.bind(this)
-	    });	
+	    });
     };
 
 
@@ -59,7 +59,7 @@
     	return function( obj ){
     		return obj[m].call( obj );
     	};
-	};	
+	};
     String.prototype.capitalize = function(){
     	return this.charAt(0).toUpperCase() + this.slice(1);
 	};
@@ -77,8 +77,8 @@
     return function(a,b){
     	return util.compare(a[k],b[k]) * (dir==="desc" ? -1 : 1);
     }}
-    util.stringify = function(obj, k){    	
-    	if( typeof obj === 'object' ){    		
+    util.stringify = function(obj, k){
+    	if( typeof obj === 'object' ){
     		var result = [];
     		Object.keys( obj ).forEach( function(nk){
     			result.push( util.stringify(obj[nk], (k?(k+"."):"") + nk ) );
@@ -90,10 +90,10 @@
     	}
     	if( k ) return k + ": " + obj;
     	else return obj;
-    	 
-    }    	
+
+    }
     util.search_object = function(arr){
-    return function(obj){            	
+    return function(obj){
     	var keys = Object.keys( obj );
     	var all = true;
     	arr.forEach( function(s){
@@ -103,10 +103,10 @@
     		});
     		all = all && any;
     	});
-    	return all;    	
+    	return all;
     }}
 
-	
+
 </script>
 <script src='/jsx/table_admin.jsx' type="text/jsx"></script>
 <script src='/jsx/tab_stack.jsx' type="text/jsx"></script>
@@ -115,10 +115,11 @@
 
 	React.render(
 
-	  <div className="container">		
+	  <div className="container">
 	  	<TabStack>
 	  		<TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password" />
 	  		<TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
+            <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:text|points:text" />
 	  	</TabStack>
 	  </div>,
 	  document.getElementById('container')
