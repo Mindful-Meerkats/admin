@@ -1,59 +1,59 @@
-var TableGrid = React.createClass({	
-	getInitialState:function(){			
-		return { 
-			fields: this.props.fields.split('|').map( function(s){ return s.split(':')[0] } ), 
-			sort: "id", 
-			sortDir: "asc" 
-		} 
+var TableGrid = React.createClass({
+	getInitialState:function(){
+		return {
+			fields: this.props.fields.split('|').map( function(s){ return s.split(':')[0] } ),
+			sort: "id",
+			sortDir: "asc"
+		}
 	},
-	openRecord:function( r ){		
+	openRecord:function( r ){
 	    this.props.onRecord( r );
 	},
 	setSort:function( k ){
 	    if( this.state.sort === k ){
 			this.setState( {sortDir: ( this.state.sortDir === 'asc' ? 'desc' : 'asc') })
 		} else {
-			this.setState( {sort: k, sortDir: 'asc' });		   
-		}		   		   
+			this.setState( {sort: k, sortDir: 'asc' });
+		}
 	},
 	filteredSortedRows:function(){
-         return this.props.rows.filter( util.search_object( this.props.search.split() ) ).sort( util.sorter( this.state.sort, this.state.sortDir ) );				
+         return this.props.rows.filter( util.search_object( this.props.search.split() ) ).sort( util.sorter( this.state.sort, this.state.sortDir ) );
 	},
-	renderBody:function(){				
+	renderBody:function(){
 		var rows = this.filteredSortedRows().map( function(r,i){
 			var cells = this.state.fields.map( function(k){
 				return <div className={"tableGridCell " + k} key={r.id + "_" + k}>{util.stringify(r[k])}</div>;
-			});						
+			});
 			return <div className="tableGridRow" onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}</div>;
-		},this);	
-		return <div className="tableGridBody">{rows}</div>;	
+		},this);
+		return <div className="tableGridBody">{rows}</div>;
 	},
 	renderHeader:function(){
 		var hcells = this.state.fields.map( function(k){
-		   var icon;		   
+		   var icon;
 		   if( k === this.state.sort ){
 		   	if( this.state.sortDir === "asc" ) icon = <i className="fa fa-chevron-up"></i>;
 		   	else                               icon = <i className="fa fa-chevron-down"></i>;
-		   }		   		  
+		   }
            return <div className={"tableGridHeaderCell " + k} onClick={this.setSort.bind(this,k)} key={"header_" + k}>{k.humanize()}{icon}</div>;
 		},this);
 		return <div className="tableGridHeaderRow">{hcells}</div>;
-	},	
-	render: function(){		    		
+	},
+	render: function(){
 		return <div className="tableGrid">{this.renderHeader()}{this.renderBody()}</div>;
 	}
-});	
+});
 
 var TableFormEditorJSON = React.createClass({
 	getInitialState:function(){
-		return {}			
-	},	
+		return {}
+	},
 	componentDidMount: function(){
 		var ts = 'ace' + Date.now();
 	    var w = $('<pre id="' + ts + '">').text( JSON.stringify( this.props.data, null, "\t" ) );
 	    this.refs.aceEditor.getDOMNode().innerHTML = "";
-	    w.appendTo( this.refs.aceEditor.getDOMNode() );	    
-		var editor = ace.edit( ts );		
+	    w.appendTo( this.refs.aceEditor.getDOMNode() );
+		var editor = ace.edit( ts );
 		editor.setOptions({ maxLines: Infinity, minLines: 3, showPrintMargin: false });
 		editor.setAutoScrollEditorIntoView(true);
 		editor.getSession().setMode("ace/mode/json");
@@ -63,26 +63,26 @@ var TableFormEditorJSON = React.createClass({
 			var result;
 			try {
 				result = JSON.parse( editor.getSession().getValue() );
-				me.props.onInput( result );	
-			} catch( err ){}			
+				me.props.onInput( result );
+			} catch( err ){}
 		});
 	},
-	render:function(){						
+	render:function(){
 		return <div className='tableFormEditorJSON'><div ref="aceEditor"></div></div>;
 	}
 });
 
-var TableFormEditorText = React.createClass({    
+var TableFormEditorText = React.createClass({
 	getInitialState:function(){
 		return {
 			data: this.props.data || null
 		}
-	},	
-	sendInput:function( e ){
-		this.setState( { data: this.refs.inputElement.getDOMNode().value });		
-		this.props.onInput( this.refs.inputElement.getDOMNode().value );		
 	},
-	render:function(){		
+	sendInput:function( e ){
+		this.setState( { data: this.refs.inputElement.getDOMNode().value });
+		this.props.onInput( this.refs.inputElement.getDOMNode().value );
+	},
+	render:function(){
 		return <div className='tableFormEditorText'><input ref='inputElement' type={this.props.type || 'text'} value={this.state.data} onInput={this.sendInput} onChange={this.sendInput}/></div>;
 	}
 });
@@ -98,21 +98,21 @@ var TableForm = React.createClass({
 	discardMe:function(){
 		this.props.onDiscard();
 	},
-	closeMe:function(){				
+	closeMe:function(){
 		if( this.state.dirty && confirm('Save changes?') ) this.saveMe(); else this.discardMe();
 	},
 	saveMe:function(){
-		this.props.onSave( this.state.data );		
+		this.props.onSave( this.state.data );
 	},
-	sendInput:function(k,i){	    	
+	sendInput:function(k,i){
 	    var d = this.state.data;
-	    d[k] = i;		    
-	    this.setState( { data: d, dirty: true } );				
+	    d[k] = i;
+	    this.setState( { data: d, dirty: true } );
 	},
 	shouldComponentUpdate:function(){
 		return false;
 	},
-	renderFields:function(){		
+	renderFields:function(){
 		return this.state.fields.map( function( field ){
 			var fieldName = field[0];
 			var fieldType = field[1];
@@ -120,14 +120,14 @@ var TableForm = React.createClass({
 			if( fieldType === 'json' ){
 				control = <TableFormEditorJSON key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
 			} else if( fieldType === 'text' ){
-				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>			
+				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
 			} else if( fieldType === 'password' ){
 				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
 			}
 			return <fieldset key={fieldName} className={fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
 		}, this);
 	},
-	render: function(){		    
+	render: function(){
 		return (<div className='tableForm'>
 			<div className='blocker' onClick={this.closeMe}/>
 				<form>
@@ -140,52 +140,52 @@ var TableForm = React.createClass({
 });
 
 var TableAdmin = React.createClass({
-	getInitialState: function(){	
-		return { 						
+	getInitialState: function(){
+		return {
 			rows: [],
-			gridFields: this.props.gridFields || ("id|" + this.props.fields), 
+			gridFields: this.props.gridFields || ("id|" + this.props.fields),
 			formFields: this.props.formFields || this.props.fields,
-			search: "",			
+			search: "",
 			title: this.props.title || "Data",
 			record: this.props.record || null
-		} 
-	},	
+		}
+	},
 	componentDidMount: function() {
 		api.get( this.props.url, this, 'rows' );
 		this.refs.searchInput.getDOMNode().focus();
-  	},	
-  	setSearch: function(){  		
+  	},
+  	setSearch: function(){
   		this.setState({search: this.refs.searchInput.getDOMNode().value || ""});
   	},
   	openForm: function( record ){
         this.setState({ record: record || {} });
-  	},  	
+  	},
   	discardForm: function(){
   		this.setState({ record: null });
   	},
-  	refresh:function(){  		
+  	refresh:function(){
   		api.get( this.props.url, this, 'rows' );
 		this.refs.searchInput.getDOMNode().focus();
   	},
-  	saveForm: function( data ){  		  		
+  	saveForm: function( data ){
         // if succesfully posted/put to api (depends on if id exists)
         var newdata = {};
         this.state.formFields.split('|').forEach( function(f){
         	var fieldName = f.split(':')[0];
         	if( fieldName !== 'id' ) newdata[fieldName] = data[fieldName];
         });
-        if( data.id ) api.put(this.props.url + '/' + data.id, newdata, this.refresh );        
+        if( data.id ) api.put(this.props.url + '/' + data.id, newdata, this.refresh );
         else          api.post(this.props.url, newdata, this.refresh );
         this.discardForm();
   	},
-	render: function(){ 
+	render: function(){
 	    var form;
-	    if( this.state.record !== null ){           
-	       form = <TableForm fields={this.state.formFields} data={this.state.record} onSave={this.saveForm} onDiscard={this.discardForm}/>;	
-	    } 
+	    if( this.state.record !== null ){
+	       form = <TableForm fields={this.state.formFields} data={this.state.record} onSave={this.saveForm} onDiscard={this.discardForm}/>;
+	    }
 		return (
 			<div className={"tableAdmin " + this.props.className} >
-			  <div className="tableHeader">			    			    
+			  <div className="tableHeader">
 			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder={"Type to search in " + this.state.title} value={this.state.search}/>
 			    <div className={"create " +  this.props.className } onClick={this.openForm}></div>
 			   </div>
