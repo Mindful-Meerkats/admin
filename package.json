@@ -13,6 +13,7 @@
   "author": "Ramon Gebben <ramon@ra-ge.net> (http://ra-ge.net)",
   "license": "ISC",
   "dependencies": {
+    "everyauth": "^0.4.9",
     "express": "^4.12.3"
   },
   "devDependencies": {
