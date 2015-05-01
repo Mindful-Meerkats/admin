@@ -111,14 +111,17 @@
 <script src='/jsx/table_editors.jsx' type="text/jsx"></script>
 <script src='/jsx/table_admin.jsx' type="text/jsx"></script>
 <script src='/jsx/tab_stack.jsx' type="text/jsx"></script>
-<div id='container'></div>
+<a href="/auth/twitter">log in with twitter</a>
+<div id='container'>
+
+</div>
 <script type="text/jsx">
 
 	React.render(
 
 	  <div className="container">
 	  	<TabStack>
-	  		<TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password" />
+	  		<TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password|twitterid:text" />
 	  		<TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
             <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:text|points:text" />
 	  	</TabStack>
