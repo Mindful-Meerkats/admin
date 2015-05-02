@@ -23,19 +23,18 @@ return function(a,b){
 	return util.compare(a[k],b[k]) * (dir==="desc" ? -1 : 1);
 }}
 util.stringify = function(obj, k){
-	if( typeof obj === 'object' ){
+	if( obj instanceof Array ){
+        obj = '[' + obj.map( function(e,i){ return util.stringify(e); } ) + ']';
+    }        
+    else if( typeof obj === 'object' ){
 		var result = [];
 		Object.keys( obj ).forEach( function(nk){
 			result.push( util.stringify(obj[nk], (k?(k+"."):"") + nk ) );
 		});
 		return result.join(', ');
 	}
-	if( obj instanceof Array ){
-		obj = '[' + obj.map( util.stringify ) + ']';
-	}
 	if( k ) return k + ": " + obj;
 	else return obj;
-
 }
 util.search_object = function(arr){
 return function(obj){
