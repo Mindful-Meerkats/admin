@@ -6,7 +6,7 @@
 	i.fa {
 		float: right;
 		line-height: 1.5;
-	}	
+	}
 }
 
 .tableHeader {
@@ -15,12 +15,12 @@
 
 	input[type="search"] {
 		width: 50%;
-		padding: 20px;		
+		padding: 20px;
 		font-family: @fontStack;
 		font-weight: 300;
-		font-size: 20px;		
-		border: none;		
-	
+		font-size: 20px;
+		border: none;
+
 		&:active, &:focus {
 			outline: none;
 		}
@@ -88,31 +88,31 @@
 			-moz-user-select: none;
 			-ms-user-select: none;
 			user-select: none;
-			@media (max-width: 768px) {				
-				display: block; 
+			@media (max-width: 768px) {
+				display: block;
 				max-width: 100%;
 			}
 		}
-		
+
 	}
 }
 
 
-.tableGridBody {	
-	.tableGridRow {		
+.tableGridBody {
+	.tableGridRow {
 		cursor: pointer;
 		border-top: 1px solid transparent;
-		border-bottom: 1px solid transparent;		
+		border-bottom: 1px solid transparent;
 		.tableGridCell {
 			display: inline-block;
 			max-width: 200px;
 			width: 100%;
-			white-space: nowrap; 
-			overflow: hidden; 
+			white-space: nowrap;
+			overflow: hidden;
 			text-overflow: ellipsis;
 			padding: 10px 20px;
-			@media (max-width: 768px) {				
-				display: block; 
+			@media (max-width: 768px) {
+				display: block;
 				max-width: 100%;
 			}
 		}
@@ -120,26 +120,45 @@
 			border-top: 1px solid #d0d0d0;
 			border-bottom: 1px solid #d0d0d0;
 		}
-
 		&:nth-child( odd ){
 			background-color: #f9f9f9
 		}
+
+		.edit, .destroy {
+			line-height: 2.5;
+			float: right;
+			margin-right: 20px;
+			transition: all .2s ease-out;
+			&:after {
+				font-family: "FontAwesome";
+				font-size: 17px;
+			}
+
+			&:hover {
+				color: #1d1d1d;
+				animation: zoomSpin .2s; -webkit-animation: zoomSpin .2s;
+				transition: all .2s ease-out;
+			}
+		}
+
+		.edit:after { content: "\f044"; }
+		.destroy:after { content: "\f014"; }
 	}
 }
 
 
-.tableForm { 
- 	position: fixed; 
- 	top: 0; 
- 	right: 0; 
+.tableForm {
+ 	position: fixed;
+ 	top: 0;
+ 	right: 0;
  	bottom: 0;
- 	left: 0; 	
+ 	left: 0;
 
- 	form { 
+ 	form {
  		position: absolute;
- 		top: 10%; 
+ 		top: 10%;
  		right: 5%;
- 		bottom: 10%; 
+ 		bottom: 10%;
  		left: 5%;
  		background-color: white;
  		border-radius: 4px;
@@ -147,7 +166,7 @@
  		z-index: 1000; overflow-y: scroll;
  		animation: formIn .2s; -webkit-animation: formIn .2s;
  	}
-	fieldset { 
+	fieldset {
 		position: relative;
 		width: 100%;
 	  	border-radius: 4px;
@@ -155,31 +174,31 @@
 	  	margin-bottom: 1em;
 	  	padding: 0;
 	  	min-height: 2em;
-	  	
+
 	  	.tableFormEditorText {
 	  		margin-left: 100px;
 	  	}
 	  	.tableFormEditorJSON {
-	  		margin-left: 100px; 	  		
+	  		margin-left: 100px;
 	  		pre { border-radius: 0px 4px 4px 0px }
 			.ace_editor { height: 70px; border-radius: 0px 4px 4px 0px; }
 	  	}
-	  	
-		legend { 
+
+		legend {
 			width: 100px;
 			position: absolute;
 			top: 0; bottom: 0; left: 0px;
 			background-color: @borderColor;
 			z-index: 500;
 			text-indent: 10px;
-			line-height: 34px;			
+			line-height: 34px;
 		}
 
 		input[type="text"], input[type="password"] {
 			width: 100%;
 		  	font-size: 16px;
 		  	padding: 10px;
-		  	outline: none;		  	
+		  	outline: none;
 		  	border: none;
 		  	border-radius: 0px 4px 4px 0px;
 		}
@@ -193,23 +212,23 @@
 		}
 	}
 
-	.error { 
-		font-weight: bold; 
-		position: absolute; 
-		top: -3px; 
-		right: 0.5em; 
-		font-size: 16px; 
-		z-index: 100; 
+	.error {
+		font-weight: bold;
+		position: absolute;
+		top: -3px;
+		right: 0.5em;
+		font-size: 16px;
+		z-index: 100;
 		background-color: maroon;
-		color: white; 
-		padding: 0 0.5em; 
-		border-radius: 3px; 
+		color: white;
+		padding: 0 0.5em;
+		border-radius: 3px;
 		max-width: 50%;
 	}
-	.cancel, .submit { 
+	.cancel, .submit {
 		padding: 5px 30px;
 		border-radius: 4px;
-		font-size: 17px; 
+		font-size: 17px;
 		cursor: pointer;
 		z-index: 500;
 		color: #fff;
@@ -217,18 +236,18 @@
 
 		&:hover {
 			transition: background-color .2s ease-out;
-		}		
+		}
 	}
-	.cancel { 
+	.cancel {
 		background-color: @darkRed;
 		float: left;
 
 		&:hover {
 			background-color: @lightRed;
-		}		
-		
-	}	
-	.submit { 
+		}
+
+	}
+	.submit {
 		background-color: @darkBlue;
 		float: right;
 

@@ -52,6 +52,18 @@
 	      }.bind(this)
 	    });
     };
+    api.del = function( url, cb ){
+        $.ajax({
+          url: api.server + url,
+          method: 'delete',
+          success: function( data ){
+            cb();
+          }.bind(this),
+          error: function( xhr, status, err ){
+            alert( status + ": " + err.toString() );
+          }.bind(this)
+        });
+    };
 
 
     String.prototype.method = function(){

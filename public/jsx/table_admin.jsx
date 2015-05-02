@@ -9,6 +9,11 @@ var TableGrid = React.createClass({
 	openRecord:function( r ){
 	    this.props.onRecord( r );
 	},
+	destroyRecord:function( r ){
+		if( confirm('Destroy record?') ){
+			this.props.onDel( r );
+		}
+	},
 	setSort:function( k ){
 	    if( this.state.sort === k ){
 			this.setState( {sortDir: ( this.state.sortDir === 'asc' ? 'desc' : 'asc') })
@@ -24,7 +29,7 @@ var TableGrid = React.createClass({
 			var cells = this.state.fields.map( function(k){
 				return <div className={"tableGridCell " + k} key={r.id + "_" + k}>{util.stringify(r[k])}</div>;
 			});
-			return <div className="tableGridRow" onClick={this.openRecord.bind(this,r)} key={r.id}>{cells}</div>;
+			return <div className="tableGridRow" key={r.id}>{cells} <span className="destroy" onClick={ this.destroyRecord.bind( this,r ) }></span><span className="edit" onClick={this.openRecord.bind(this,r)}></span></div>;
 		},this);
 		return <div className="tableGridBody">{rows}</div>;
 	},
@@ -120,9 +125,16 @@ var TableAdmin = React.createClass({
   	discardForm: function(){
   		this.setState({ record: null });
   	},
-  	refresh:function(){
+  	refresh: function(){
   		api.get( this.props.url, this, 'rows' );
 		this.refs.searchInput.getDOMNode().focus();
+  	},
+  	delRecord: function( r ){
+  		var self = this;
+  		api.del( this.props.url + '/' + r.id, function( resp ){
+  			console.log( resp );
+  			self.refresh();
+  		});
   	},
   	saveForm: function( data ){
         // if succesfully posted/put to api (depends on if id exists)
@@ -146,7 +158,7 @@ var TableAdmin = React.createClass({
 			    <input ref="searchInput" onInput={this.setSearch} onChange={this.setSearch} type='search' placeholder={"Type to search in " + this.state.title} value={this.state.search}/>
 			    <div className={"create " +  this.props.className } onClick={this.openForm}></div>
 			   </div>
-			   <TableGrid fields={this.state.gridFields} rows={this.state.rows} search={this.state.search} onRecord={this.openForm}/>
+			   <TableGrid fields={this.state.gridFields} rows={this.state.rows} search={this.state.search} onDel={ this.delRecord } onRecord={this.openForm}/>
 			   {form}
 			</div>
 		);
