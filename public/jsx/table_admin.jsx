@@ -52,6 +52,7 @@ var TableGrid = React.createClass({
 var TableForm = React.createClass({
 	getInitialState: function(){
 		return {
+			//dit maakt van "pizza|geheim:text|tjakka:poep" [ ["pizza","json"], ["geheim","text"], ["tjakka", "poep"]]
 			fields: this.props.fields.split('|').map( function(s){ return s.split(':').concat(['json']).slice(0,2) } ),
 			data:   JSON.parse( JSON.stringify( this.props.data ) ),
 			dirty:  this.props.data.id ? false : true
@@ -79,13 +80,31 @@ var TableForm = React.createClass({
 			var fieldName = field[0];
 			var fieldType = field[1];
 			var control;
-			if( fieldType === 'json' ){
-				control = <TableFormEditorJSON key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
-			} else if( fieldType === 'text' ){
-				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
-			} else if( fieldType === 'password' ){
-				control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
+
+			switch( fieldType ){
+				case 'json':
+					control = <TableFormEditorJSON key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+					break;
+				case 'text':
+					control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+					break;
+				case 'password':
+					control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
+					break;
+				case 'markdown':
+					control = <TableFormEditorMD key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+					break;
+				default:
+					throw "Unkown table editor type"
+					break;
 			}
+			// if( fieldType === 'json' ){
+			// 	control = <TableFormEditorJSON key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+			// } else if( fieldType === 'text' ){
+			// 	control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+			// } else if( fieldType === 'password' ){
+			// 	control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
+			// }
 			return <fieldset key={fieldName} className={fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
 		}, this);
 	},

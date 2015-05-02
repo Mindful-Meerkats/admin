@@ -5,121 +5,8 @@
 <script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js"></script>
-<script>
-
-    var api = {};
-    api.server = "http://localhost:1337";
-    api.get = function( url, obj, key ){
-	   $.ajax({
-	      url: api.server + url,
-	      dataType: 'json',
-	      success: function( data ){
-	      	var result = {};
-	      	result[key] = data;
-	        obj.setState( result );
-	      }.bind(this),
-	      error: function( xhr, status, err ){
-	        console.error( url, status, err.toString() );
-	      }.bind(this)
-	    });
-    };
-    api.post = function( url, data, cb ){
-
-    	$.ajax({
-	      url: api.server + url + (data.id ? '/' + data.id : ''),
-	      dataType: 'json',
-	      method: 'post',
-	      data: data,
-	      success: function( data ){
-	      	cb();
-	      }.bind(this),
-	      error: function( xhr, status, err ){
-	      	alert( status + ": " + err.toString() );
-	      }.bind(this)
-	    });
-    };
-    api.put = function( url, data, cb ){
-    	$.ajax({
-	      url: api.server + url,
-	      dataType: 'json',
-	      method: 'put',
-	      data: data,
-	      success: function( data ){
-	      	cb();
-	      }.bind(this),
-	      error: function( xhr, status, err ){
-	      	alert( status + ": " + err.toString() );
-	      }.bind(this)
-	    });
-    };
-    api.del = function( url, cb ){
-        $.ajax({
-          url: api.server + url,
-          method: 'delete',
-          success: function( data ){
-            cb();
-          }.bind(this),
-          error: function( xhr, status, err ){
-            alert( status + ": " + err.toString() );
-          }.bind(this)
-        });
-    };
-
-
-    String.prototype.method = function(){
-    	var m = this;
-    	return function( obj ){
-    		return obj[m].call( obj );
-    	};
-	};
-    String.prototype.capitalize = function(){
-    	return this.charAt(0).toUpperCase() + this.slice(1);
-	};
-    String.prototype.humanize = function(){
-    	return this.split('_').map( "capitalize".method() ).join('-');
-    };
-
-    var util = {};
-    util.compare = function(a, b){
-    	if( a > b ) return -1;
-    	if( a < b ) return 1;
-    	return 0;
-    }
-    util.sorter = function(k,dir){
-    return function(a,b){
-    	return util.compare(a[k],b[k]) * (dir==="desc" ? -1 : 1);
-    }}
-    util.stringify = function(obj, k){
-    	if( typeof obj === 'object' ){
-    		var result = [];
-    		Object.keys( obj ).forEach( function(nk){
-    			result.push( util.stringify(obj[nk], (k?(k+"."):"") + nk ) );
-    		});
-    		return result.join(', ');
-    	}
-    	if( obj instanceof Array ){
-    		obj = '[' + obj.map( util.stringify ) + ']';
-    	}
-    	if( k ) return k + ": " + obj;
-    	else return obj;
-
-    }
-    util.search_object = function(arr){
-    return function(obj){
-    	var keys = Object.keys( obj );
-    	var all = true;
-    	arr.forEach( function(s){
-    		var any = false;
-    		keys.forEach( function(k){
-    			if( ( obj[k] + "" ).search(s) !== -1 ) any = true;
-    		});
-    		all = all && any;
-    	});
-    	return all;
-    }}
-
-
-</script>
+<script src="/js/helpers.js"></script>
+<script src="/js/api.js"></script>
 <script src='/jsx/table_editors.jsx' type="text/jsx"></script>
 <script src='/jsx/table_admin.jsx' type="text/jsx"></script>
 <script src='/jsx/tab_stack.jsx' type="text/jsx"></script>
@@ -159,7 +46,7 @@
 	  	<TabStack>
 	  		<TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password|twitterid:text" />
 	  		<TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
-            <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:text|points:text" />
+            <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:markdown|points:text" />
 	  	</TabStack>
 	  </div>,
 	  document.getElementById('container')
