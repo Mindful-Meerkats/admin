@@ -24,17 +24,12 @@
     "request": "^2.55.0"
   },
   "devDependencies": {
-    "baobab": "~1.0.1",
-    "baobab-react": "git+https://github.com/Yomguithereal/baobab-react.git",
-    "browserify": "^9.0.8",
-    "combine-css": "0.0.2",
     "gulp": "^3.8.11",
     "gulp-less": "~3.0.3",
     "gulp-nodemon": "~2.0.2",
     "gulp-notify": "^2.2.0",
     "gulp-task-listing": "~1.0.0",
     "react": "~0.13.2",
-    "reactify": "^1.1.0",
     "vinyl-source-stream": "^1.1.0"
   }
 }
