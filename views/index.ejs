@@ -115,18 +115,27 @@
 <div class="nav">
     <ul>
         <li>
-            <img src="http://lorempixel.com/people/100/100" alt="profile">
-            <a href="#">Name Here</a>
+            <%if (everyauth.loggedIn) { %>
+                <img src="<%= everyauth.twitter.user.profile_image_url %>" alt="profile">
+                <a href="#"><%= everyauth.twitter.user.screen_name %></a>
+            <% }else { %>
+                <img src="http://lorempixel.com/people/100/100" alt="profile">
+                <a href="#">Name Here</a>
+            <%} %>
+
         </li>
         <li class="logout">
-            <a href="#">logout</a>
+        <%if (everyauth.loggedIn) { %>
+            <a href="#">Log out</a>
+        <% }else { %>
+            <a href="/auth/twitter">log in with twitter</a>
+        <% } %>
         </li>
     </ul>
 </div>
 
-<a href="/auth/twitter">log in with twitter</a>
 
-<p>Logged in: <%= everyauth.loggedIn  %></p>
+
 <div id='container'>
 
 </div>
