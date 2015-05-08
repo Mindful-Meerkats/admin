@@ -1,5 +1,5 @@
 var api = {};
-api.server = "http://localhost:1337";
+api.server = "http://api.suricates.nl";
 api.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBJZCI6IjlkZmNhNzY1LWEwNmQtNDZjMy04ZDFjLWE2YzA2YzllZGVhMSIsImlhdCI6MTQzMTEyMzQ2OX0.tMbLH5nlVsiS1Eu_zFTdrI1_5PKm_Kq1hVe6Dx5jIGs";
 api.get = function( url, obj, key ){
    $.ajax({
