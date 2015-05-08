@@ -2,10 +2,10 @@ var TabStack = React.createClass({
 	getInitialState:function(){
 		return { tabIndex: 1 }
 	},
-	setTabIndex:function(i){		
+	setTabIndex:function(i){
 		this.setState({tabIndex: i});
 	},
-	render: function(){		
+	render: function(){
 		var labels = React.Children.map( this.props.children, function(c,i){
 			return <div className={"tabLabel " + c.props.className + (i === this.state.tabIndex ? " selected" : "" )} onClick={this.setTabIndex.bind(this,i)}>{c.props.title}</div>;
 		}, this);

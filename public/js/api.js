@@ -1,10 +1,13 @@
-
+var api_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBJZCI6IjlkZmNhNzY1LWEwNmQtNDZjMy04ZDFjLWE2YzA2YzllZGVhMSIsImlhdCI6MTQzMTEyMzQ2OX0.tMbLH5nlVsiS1Eu_zFTdrI1_5PKm_Kq1hVe6Dx5jIGs";
 var api = {};
 api.server = "http://localhost:1337";
 api.get = function( url, obj, key ){
    $.ajax({
 	  url: api.server + url,
 	  dataType: 'json',
+	  beforeSend: function( xhr ){
+	  	xhr.setRequestHeader("Authorization", "Bearer " + api_token);
+	  },
 	  success: function( data ){
 		var result = {};
 		result[key] = data;
@@ -22,6 +25,9 @@ api.post = function( url, data, cb ){
 	  dataType: 'json',
 	  method: 'post',
 	  data: data,
+	  beforeSend: function( xhr ){
+	  	xhr.setRequestHeader("Authorization", "Bearer " + api_token);
+	  },
 	  success: function( data ){
 		cb();
 	  }.bind(this),
@@ -36,6 +42,9 @@ api.put = function( url, data, cb ){
 	  dataType: 'json',
 	  method: 'put',
 	  data: data,
+	  beforeSend: function( xhr ){
+	  	xhr.setRequestHeader("Authorization", "Bearer " + api_token);
+	  },
 	  success: function( data ){
 		cb();
 	  }.bind(this),
@@ -48,6 +57,9 @@ api.del = function( url, cb ){
 	$.ajax({
 	  url: api.server + url,
 	  method: 'delete',
+	  beforeSend: function( xhr ){
+	  	xhr.setRequestHeader("Authorization", "Bearer " + api_token);
+	  },
 	  success: function( data ){
 		cb();
 	  }.bind(this),

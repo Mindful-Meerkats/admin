@@ -60,6 +60,7 @@
 
 	  		&:after {
 	  			-webkit-transform: rotate( 360deg );
+	  			transform: rotate( 360deg );
 	  			transition: all .2s ease-out;
 	  		}
 	  	}
@@ -67,6 +68,7 @@
 	  		font-family: "FontAwesome";
 	  		content: "\f067";
 	  		-webkit-transform: rotate( 0deg );
+	  		transform: rotate(0);
 	  		transition: all .2s ease-out;
 	  	}
 	}
@@ -100,7 +102,6 @@
 
 .tableGridBody {
 	.tableGridRow {
-		cursor: pointer;
 		border-top: 1px solid transparent;
 		border-bottom: 1px solid transparent;
 		.tableGridCell {
@@ -129,6 +130,7 @@
 			float: right;
 			margin-right: 20px;
 			transition: all .2s ease-out;
+			cursor: pointer;
 			&:after {
 				font-family: "FontAwesome";
 				font-size: 17px;
