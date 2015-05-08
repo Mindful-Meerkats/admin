@@ -28,9 +28,11 @@ gulp.task('server', function(){
 });
 
 // Watch die shizzle
-gulp.task('watch', function() {
+gulp.task('watch', function(){
   gulp.watch('./less/*.less', ['less']);
 });
+
+gulp.task('build', ['less']);
 
 gulp.task('default', ['server', 'less', 'watch']);
 
