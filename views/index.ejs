@@ -22,7 +22,7 @@
     <ul>
         <li>
             <img src="http://lorempixel.com/people/100/100" alt="profile">
-            <h4 class='screen_name'>Unauthorized</h4>
+            <h4 class='screen_name'></h4>
         </li>
         <li class="logout">
             <a href="#" class='logout' onclick='api.logout(); return false;'>Logout..</a>
@@ -43,8 +43,7 @@ React.render(
         <TabStack>
             <TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password" />
             <TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
-            <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:markdown|points:text" />
-            <TableAdmin className="apps" title="Apps" url="/apps" fields="name:text|description:markdown|token:text" />
+            <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:markdown|points:text" />            
         </TabStack>
       </div>,
       document.getElementById('container')
