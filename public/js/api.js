@@ -1,8 +1,8 @@
 var api = {};
-api.server = "http://api.suricates.nl";
+api.server = config.apiServer();
 api.token = window.location.hash.substr(1);
 window.location.hash = "";
-if( api.token === "" ) window.location.replace("http://localhost:4444/auth/twitter");
+if( api.token === "" ) window.location.replace( config.authServer() + "/auth/twitter");
 api.get = function( url, obj, key ){
    $.ajax({
 	  url: api.server + url,
@@ -16,7 +16,7 @@ api.get = function( url, obj, key ){
 		obj.setState( result );
 	  }.bind(this),
 	  error: function( xhr, status, err ){
-		console.error( url, status, err.toString() );		
+		console.error( url, status, err.toString() );
 	  }.bind(this)
 	});
 };
