@@ -69,3 +69,18 @@ var TableFormEditorText = React.createClass({
 		return <div className='tableFormEditorText'><input ref='inputElement' type={this.props.type || 'text'} value={this.state.data} onInput={this.sendInput} onChange={this.sendInput}/></div>;
 	}
 });
+
+var TableFormEditorBool = React.createClass({
+	getInitialState:function(){
+		return {
+			data: this.props.data || null
+		}
+	},
+	sendInput:function( e ){
+		this.setState( { data: this.refs.inputElement.getDOMNode().checked });
+		this.props.onInput( this.refs.inputElement.getDOMNode().checked );
+	},
+	render:function(){
+		return <div className='tableFormEditorText'><input ref='inputElement' type="checkbox" checked={this.state.data} onChange={this.sendInput}/></div>;
+	}
+});

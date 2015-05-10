@@ -91,6 +91,9 @@ var TableForm = React.createClass({
 				case 'password':
 					control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
 					break;
+				case 'bool':
+					control = <TableFormEditorBool key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
+					break;
 				case 'markdown':
 					control = <TableFormEditorMD key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
 					break;
@@ -98,13 +101,6 @@ var TableForm = React.createClass({
 					throw "Unkown table editor type"
 					break;
 			}
-			// if( fieldType === 'json' ){
-			// 	control = <TableFormEditorJSON key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
-			// } else if( fieldType === 'text' ){
-			// 	control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)}/>
-			// } else if( fieldType === 'password' ){
-			// 	control = <TableFormEditorText key={fieldName} data={this.state.data[fieldName]} onInput={this.sendInput.bind(this,fieldName)} type='password'/>
-			// }
 			return <fieldset key={fieldName} className={fieldName}><legend>{fieldName.humanize()}</legend>{control}</fieldset>
 		}, this);
 	},
