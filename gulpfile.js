@@ -92,10 +92,6 @@ gulp.task('compile:production', function(){
     shell.rm('-r', './build');
     shell.rm('./public/js/__*.js');
   });
-  runSequence('replaceHtml', function(){
-    shell.rm('./public/index.html');
-    shell.mv('./public/index.ejs', './public/index.html');
-  });
 });
 
 // Watch die shizzle
