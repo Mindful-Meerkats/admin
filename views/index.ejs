@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <title>Admin</title>
+<!-- build:css -->
 <link rel="stylesheet" href="/css/index.css">
+<!-- endbuild -->
 <script src="https://fb.me/react-0.13.2.js"></script>
-<script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js"></script>
+<script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
+<!-- build:js -->
 <script src="/js/helpers.js"></script>
 <script src="/js/api.js"></script>
 <script src='/jsx/table_editors.jsx' type="text/jsx"></script>
 <script src='/jsx/table_admin.jsx' type="text/jsx"></script>
 <script src='/jsx/tab_stack.jsx' type="text/jsx"></script>
+<!-- endbuild -->
 
 <div class="nav">
     <ul>
         <li>
-            <%if (everyauth.loggedIn) { %>
-                <img src="<%= everyauth.twitter.user.profile_image_url %>" alt="profile">
-                <h4><%= everyauth.twitter.user.screen_name %></h4>
-            <% }else { %>
-                <img src="http://lorempixel.com/people/100/100" alt="profile">
-                <h4>Name Here</h4>
-            <%} %>
-
+            <img src="http://lorempixel.com/people/100/100" alt="profile">
+            <h4>Name Here</h4>
         </li>
         <li class="logout">
-        <%if (everyauth.loggedIn) { %>
-            <a href="#">Log out</a>
-        <% }else { %>
             <a href="/auth/twitter">log in with twitter</a>
-        <% } %>
         </li>
     </ul>
 </div>
@@ -40,19 +34,18 @@
 </div>
 <script type="text/jsx">
 
-	React.render(
+React.render(
 
-	  <div className="container">
-	  	<TabStack>
-	  		<TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password|twitterid:text" />
-	  		<TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
+      <div className="container">
+        <TabStack>
+            <TableAdmin className="accounts" title="Accounts" url="/accounts" fields="email:text|password:password" />
+            <TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
             <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:markdown|points:text" />
             <TableAdmin className="apps" title="Apps" url="/apps" fields="name:text|description:markdown|token:text" />
-	  	</TabStack>
-	  </div>,
-	  document.getElementById('container')
-	);
-
+        </TabStack>
+      </div>,
+      document.getElementById('container')
+    );
 
 </script>
 
