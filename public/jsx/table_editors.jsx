@@ -81,6 +81,7 @@ var TableFormEditorBool = React.createClass({
 		this.props.onInput( this.refs.inputElement.getDOMNode().checked );
 	},
 	render:function(){
-		return <div className='tableFormEditorText'><input ref='inputElement' type="checkbox" checked={this.state.data} onChange={this.sendInput}/></div>;
+		var i = Math.floor( Math.random() * 10000 );
+		return <div className='tableFormEditorText'><label><input ref='inputElement' type="checkbox" checked={this.state.data} onChange={this.sendInput} /> Yes, please</label></div>;
 	}
 });
