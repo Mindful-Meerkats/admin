@@ -67,13 +67,21 @@ api.del = function( url, cb ){
 	  }
 	});
 };
+api.logout = function(){
+	Cookies.remove('jwt');
+    window.location.replace( "/login" );
+}
+
 
 // detect token
 api.token = window.location.hash.substr(1);
 window.location.hash = "";
-if( api.token === "" ) window.location.replace( config.authServer() + "/auth/twitter");
+if( api.token === "" ) api.token = Cookies.get('jwt') || "";
+if( api.token === "" ) window.location.replace( "/login" );
 else {
-	
+
+	Cookies.set('jwt', api.token, { expires: 1 });
+
 	// fetch user record
 	$.ajax({ 
 	 	url: api.server , 
