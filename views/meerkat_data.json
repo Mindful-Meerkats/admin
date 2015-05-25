@@ -1,0 +1,34 @@
+
+{}
+// should be saved in Accounts
+// and should be labels for Q's
+{
+	"income_group": ["lo", "middle", "high"],
+	"economy": ["strong", "middle", "weak"],
+	"city_size": ["lo", "middle", "high"],
+	"age": "integer",
+}
+
+// Quests
+{
+	"title": "string",
+	"objective": "text",
+	"completed_text": "text",
+	"duration": "hours",
+	"gain_scores": {
+		"paw_print": -1,
+		"fitness": 1,
+		"wellbeing": 0,
+		"community": 1,
+		"thriftiness": 0,
+		"wisdom": 0
+	},
+	"penalty": {
+		"paw_print": -1,
+		"fitness": 1,
+		"wellbeing": 0,
+		"community": 1,
+		"thriftiness": 0,
+		"wisdom": 0
+	}
+}

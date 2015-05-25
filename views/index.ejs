@@ -43,7 +43,7 @@ React.render(
         <TabStack>
             <TableAdmin className="accounts" title="Accounts" url="/accounts" fields="screen_name:text|is_admin:bool|is_app:bool" />
             <TableAdmin className="meerkats" title="Meerkats" url="/meerkats" fields="nickname:text|birthdate:text|scores" />
-            <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:markdown|points:text" />            
+            <TableAdmin className="quests" title="Quests" url="/quests" fields="title:text|description:markdown|completed_text:markdown|points|penanty" />
         </TabStack>
       </div>,
       document.getElementById('container')
