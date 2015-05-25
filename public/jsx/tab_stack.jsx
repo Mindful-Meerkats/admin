@@ -1,8 +1,8 @@
 var TabStack = React.createClass({
-	getInitialState:function(){
+	getInitialState: function(){
 		return { tabIndex: 1 }
 	},
-	setTabIndex:function(i){
+	setTabIndex: function(i){
 		this.setState({tabIndex: i});
 	},
 	render: function(){
