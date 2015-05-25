@@ -1,7 +1,7 @@
 var config = {};
 
 config.env = function(){
-	return 'development';
+	return 'production';
 };
 
 config.apiServer = function(){
