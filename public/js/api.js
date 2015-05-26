@@ -1,5 +1,5 @@
 var api = {};
-api.server = config.apiServer();
+//api.server = config.apiServer();
 api.get = function( url, obj, key ){
    $.ajax({
 	  url: api.server + url,
@@ -77,7 +77,13 @@ api.logout = function(){
 api.token = window.location.hash.substr(1);
 window.location.hash = "";
 if( api.token === "" ) api.token = Cookies.get('jwt') || "";
-if( api.token === "" ) window.location.replace( "/login" );
+if( api.token === "" ){
+    if( window.location.replace ){
+        window.location.replace( "/login" );
+    } else {
+        window.location = "/login";
+    }
+} 
 else {
 
 	Cookies.set('jwt', api.token, { expires: 1 });

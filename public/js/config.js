@@ -1,27 +1,26 @@
 var config = {};
 
 config.env = function(){
-	if( window.location.href.includes('localhost') ){
+    var href = window.location.href;
+	if( href.indexOf('localhost') !== -1  ){
 		return 'development';
-	}else if( !window.location.href.includes('production') ) {
+	}else if( href.indexOf('suricates') !== -1 ) {
 		return 'accept'
 	}else {
 		return 'production'
 	}
 };
 
+config.apiServers = {
+    development: 'http://localhost:1337',
+    accept: 'http://api.suricates.nl',
+    production: 'http://api.mindful-meerkats.com',
+    default: 'http://localhost:1337'
+};
+    
+
 config.apiServer = function(){
-	var env = config.env();
-	switch( env ){
-		case 'development':
-			return 'http://localhost:1337';
-		case 'accept':
-			return 'http://api.suricates.nl';
-		case 'production':
-			return 'http://api.production.suricates.nl';
-		default:
-			return 'http://localhost:1337';
-	}
+    return config.apiServers[ config.env() ] || config.apiServers.default;
 };
 
 config.authServer = function(){
