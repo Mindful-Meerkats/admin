@@ -168,7 +168,27 @@
  		padding: 1em 1em 60px 1em;
  		z-index: 1000; overflow-y: scroll;
  		animation: formIn .2s; -webkit-animation: formIn .2s;
+        iframe {
+            float: right;
+            clear: right;
+            width: 320px; 
+            margin-left: 25px; 
+            border: 0px none;
+            height: 640px;
+        }
+        .previewButton {
+            float:right;
+            width: 320px;
+            background-color: green;
+            border-radius: 5px 5px 0px 0px;
+            padding: 0.5em; 
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
  	}
+
 	fieldset {
 		position: relative;
 		width: 100%;
@@ -221,6 +241,10 @@
 			}
 		}
 	}
+
+    form.preview fieldset {
+        width: auto;
+    }
 
 	.error {
 		font-weight: bold;

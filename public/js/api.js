@@ -1,5 +1,5 @@
 var api = {};
-//api.server = config.apiServer();
+api.server = config.apiServer();
 api.get = function( url, obj, key ){
    $.ajax({
 	  url: api.server + url,
@@ -90,7 +90,7 @@ else {
 
 	// fetch user record
 	$.ajax({ 
-	 	url: api.server , 
+	 	url: api.server, 
 	 	dataType: 'json', 
 	    beforeSend: function( xhr ){
 		  	xhr.setRequestHeader("Authorization", "Bearer " + api.token);
@@ -99,7 +99,7 @@ else {
 	    	$('h4.screen_name').text( data.account.screen_name );
 	    },
 	    error: function( xhr, status, err ){
-			console.error( url, status, err.toString() );
+			console.error( status, err.toString() );
 		}
 	});
 

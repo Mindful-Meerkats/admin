@@ -67,6 +67,9 @@ var TableForm = React.createClass({
 	saveMe:function(){
 		this.props.onSave( this.state.data );
 	},
+    preview:function(){
+        document.querySelector('iframe').src = this.props.preview + '?' + Date.now() + '#' + encodeURIComponent( JSON.stringify( this.state.data ) );
+    },
 	sendInput:function(k,i){
 	    var d = this.state.data;
 	    d[k] = i;
@@ -105,9 +108,14 @@ var TableForm = React.createClass({
 		}, this);
 	},
 	render: function(){
+        var preview;
+        if( this.props.preview ){
+            preview = <div className='preview'><div className='previewButton' onClick={this.preview}>Preview</div><iframe src={this.props.preview + "#" + encodeURIComponent( JSON.stringify( this.state.data ) ) }></iframe></div>
+        }
 		return (<div className='tableForm'>
 			<div className='blocker' onClick={this.closeMe}/>
-				<form>
+				<form className={ this.props.preview ? 'preview' : ''}>
+                  {preview}
 				  {this.renderFields()}
 				    <div className='cancel' onClick={this.discardMe}>Cancel</div>
 				    <div className='submit' onClick={this.saveMe}>Submit</div>
@@ -165,7 +173,7 @@ var TableAdmin = React.createClass({
 	render: function(){
 	    var form;
 	    if( this.state.record !== null ){
-	       form = <TableForm fields={this.state.formFields} data={this.state.record} onSave={this.saveForm} onDiscard={this.discardForm}/>;
+	       form = <TableForm preview={this.props.preview} fields={this.state.formFields} data={this.state.record} onSave={this.saveForm} onDiscard={this.discardForm}/>;
 	    }
 		return (
 			<div className={"tableAdmin " + this.props.className} >
